@@ -1,11 +1,14 @@
-import { Sidebar } from './components/Sidebar'
+import { AnimeSlider } from './components/AnimeSlider'
 import { Topbar } from './components/Topbar'
 
 export default function App() {
   return (
-    <main className="flex flex-1 overflow-hidden pt-7">
-      <Sidebar />
-      <Topbar />
+    <main>
+      {/* <Topbar /> */}
+      <AnimeSlider title="Continue Watching" videos={4} />
+      <AnimeSlider title="Trending Now" videos={8} />
+      <AnimeSlider title="Top Rated" videos={8} />
+      <AnimeSlider title="Drama" videos={8} />
     </main>
   )
 }
