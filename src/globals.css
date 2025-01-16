@@ -4,12 +4,6 @@
 
 @layer base {
   body {
-    @apply bg-primary;
-  }
-}
-
-@layer components {
-  .titlebar {
-    @apply w-full h-[40px] bg-primary border-b border-secondary;
+    @apply bg-pm text-zinc-300;
   }
 }
