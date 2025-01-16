@@ -7,3 +7,9 @@
     @apply bg-primary;
   }
 }
+
+@layer components {
+  .titlebar {
+    @apply w-full h-[40px] bg-primary border-b border-secondary;
+  }
+}
