@@ -28,6 +28,7 @@ export const Route = createRootRoute({
           <div className="flex items-center gap-2">
             {tabs.map((tab) => (
               <Link
+                key={tab.label}
                 to={`${tab.href}`}
                 className="px-9 py-3 rounded-full transition-colors [&.active]:text-white [&.active]:bg-sd font-semibold text-txtGray/70 hover:bg-sd hover:text-white"
               >
