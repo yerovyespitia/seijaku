@@ -5,7 +5,7 @@ type PosterSliderProps = {
 
 export const PosterSlider = ({ title, videos }: PosterSliderProps) => {
   return (
-    <div className="p-6">
+    <div className="pt-6">
       <section className="flex justify-between items-center pb-4">
         <h1 className="text-2xl font-bold text-txtGray mb-0">{title}</h1>
         <button className="px-5 py-2 text-sm font-medium rounded-md text-txtGray/70 bg-sd hover:text-zinc-300">
