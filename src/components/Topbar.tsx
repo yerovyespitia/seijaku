@@ -4,7 +4,7 @@ import { Bell, Search, Settings, User } from 'lucide-react'
 export const Topbar = () => {
   const [activeTab, setActiveTab] = useState('Home')
 
-  const tabs = ['Home', 'Search', 'My List']
+  const tabs = ['Home', 'Collections', 'Downloads']
 
   return (
     <section className="flex-1 overflow-auto sticky top-0 z-10">
