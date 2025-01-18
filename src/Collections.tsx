@@ -4,9 +4,9 @@ import { Layout } from './components/Layout'
 
 export default function Collections() {
   const collections = [
-    { id: 'watch-later', name: 'Watch Later', items: 12 },
-    { id: 'watch-later', name: 'For Summer', items: 8 },
-    { id: 'watch-later', name: 'Waiting', items: 165 },
+    { id: 0, name: 'Watch Later', items: 12 },
+    { id: 1, name: 'Watched', items: 8 },
+    { id: 2, name: 'Dropped', items: 165 },
   ]
 
   return (
@@ -21,11 +21,11 @@ export default function Collections() {
       </section>
 
       <div className='flex flex-col gap-4'>
-        {collections.map(({ name, items }) => (
+        {collections.map(({ id, name, items }) => (
           <Group
             name={name}
             items={items}
-            key={items}
+            key={id}
           />
         ))}
       </div>
