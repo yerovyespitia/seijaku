@@ -1,15 +1,16 @@
-import { Sparkles, Grid, Clock, CalendarDays } from 'lucide-react'
+import { Play, AppWindow, ChartNoAxesColumn, Settings2 } from 'lucide-react'
 
 export const Sidebar = () => {
   const sidebarItems = [
-    { name: 'Featured', icon: Sparkles },
-    { name: 'Genres', icon: Grid },
-    { name: 'New Releases', icon: Clock },
-    { name: 'Coming Soon', icon: CalendarDays },
+    { name: 'General', icon: Settings2 },
+    { name: 'Video player', icon: Play },
+    { name: 'Torrents', icon: ChartNoAxesColumn },
+    { name: 'Interface', icon: AppWindow },
   ]
+
   return (
-    <div className='w-48 bg-[#1B1E28] p-4 border-r border-[#292C35]'>
-      <h2 className='font-semibold mb-4 text-[#A6ACCD]'>Browse</h2>
+    <div className='w-52 h-screen overflow-auto fixed left-0 bg-[#1B1E28] p-4 border-r border-[#292C35]'>
+      <h2 className='font-semibold mb-4 text-[#A6ACCD]'>Settings</h2>
       <ul>
         {sidebarItems.map((item) => (
           <li
