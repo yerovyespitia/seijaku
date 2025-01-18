@@ -7,3 +7,13 @@
     @apply bg-pm text-zinc-300;
   }
 }
+
+html, body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow: auto;
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none;
+}
