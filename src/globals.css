@@ -4,16 +4,17 @@
 
 @layer base {
   body {
-    @apply bg-pm text-zinc-300;
+    @apply bg-pm text-zinc-300 overflow-y-scroll;
+  }
+  ::-webkit-scrollbar {
+    @apply w-[10px];
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-sd;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#404452];
   }
 }
-
-/* html, body {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  overflow: auto;
-}
-
-html::-webkit-scrollbar, body::-webkit-scrollbar {
-  display: none;
-} */
