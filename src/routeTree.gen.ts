@@ -17,6 +17,7 @@ import { Route as DownloadsImport } from './routes/downloads'
 import { Route as CollectionsImport } from './routes/collections'
 import { Route as AccountImport } from './routes/account'
 import { Route as IndexImport } from './routes/index'
+import { Route as CategoryCategoryIdImport } from './routes/category/$categoryId'
 
 // Create/Update Routes
 
@@ -53,6 +54,12 @@ const AccountRoute = AccountImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CategoryCategoryIdRoute = CategoryCategoryIdImport.update({
+  id: '/category/$categoryId',
+  path: '/category/$categoryId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -102,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsImport
       parentRoute: typeof rootRoute
     }
+    '/category/$categoryId': {
+      id: '/category/$categoryId'
+      path: '/category/$categoryId'
+      fullPath: '/category/$categoryId'
+      preLoaderRoute: typeof CategoryCategoryIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -114,6 +128,7 @@ export interface FileRoutesByFullPath {
   '/downloads': typeof DownloadsRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
+  '/category/$categoryId': typeof CategoryCategoryIdRoute
 }
 
 export interface FileRoutesByTo {
@@ -123,6 +138,7 @@ export interface FileRoutesByTo {
   '/downloads': typeof DownloadsRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
+  '/category/$categoryId': typeof CategoryCategoryIdRoute
 }
 
 export interface FileRoutesById {
@@ -133,6 +149,7 @@ export interface FileRoutesById {
   '/downloads': typeof DownloadsRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
+  '/category/$categoryId': typeof CategoryCategoryIdRoute
 }
 
 export interface FileRouteTypes {
@@ -144,8 +161,16 @@ export interface FileRouteTypes {
     | '/downloads'
     | '/search'
     | '/settings'
+    | '/category/$categoryId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/account' | '/collections' | '/downloads' | '/search' | '/settings'
+  to:
+    | '/'
+    | '/account'
+    | '/collections'
+    | '/downloads'
+    | '/search'
+    | '/settings'
+    | '/category/$categoryId'
   id:
     | '__root__'
     | '/'
@@ -154,6 +179,7 @@ export interface FileRouteTypes {
     | '/downloads'
     | '/search'
     | '/settings'
+    | '/category/$categoryId'
   fileRoutesById: FileRoutesById
 }
 
@@ -164,6 +190,7 @@ export interface RootRouteChildren {
   DownloadsRoute: typeof DownloadsRoute
   SearchRoute: typeof SearchRoute
   SettingsRoute: typeof SettingsRoute
+  CategoryCategoryIdRoute: typeof CategoryCategoryIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -173,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   DownloadsRoute: DownloadsRoute,
   SearchRoute: SearchRoute,
   SettingsRoute: SettingsRoute,
+  CategoryCategoryIdRoute: CategoryCategoryIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -190,7 +218,8 @@ export const routeTree = rootRoute
         "/collections",
         "/downloads",
         "/search",
-        "/settings"
+        "/settings",
+        "/category/$categoryId"
       ]
     },
     "/": {
@@ -210,6 +239,9 @@ export const routeTree = rootRoute
     },
     "/settings": {
       "filePath": "settings.tsx"
+    },
+    "/category/$categoryId": {
+      "filePath": "category/$categoryId.tsx"
     }
   }
 }
