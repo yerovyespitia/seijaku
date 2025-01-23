@@ -18,3 +18,9 @@
     @apply bg-[#404452];
   }
 }
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
