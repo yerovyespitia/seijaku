@@ -1,6 +1,11 @@
 import { Play, AppWindow, ChartNoAxesColumn, Settings2 } from 'lucide-react'
 
-export const Sidebar = () => {
+type SidebarProps = {
+  selectedItem: string
+  setSelectedItem: (item: string) => void
+}
+
+export const Sidebar = ({ selectedItem, setSelectedItem }: SidebarProps) => {
   const sidebarItems = [
     { name: 'General', icon: Settings2 },
     { name: 'Video player', icon: Play },
@@ -9,19 +14,22 @@ export const Sidebar = () => {
   ]
 
   return (
-    <div className='w-52 h-screen overflow-auto fixed left-0 bg-[#1B1E28] p-4 border-r border-[#292C35]'>
+    <div className='w-52 h-screen overflow-auto fixed left-0 bg-pm p-4 border-r border-sd'>
       <h2 className='font-semibold mb-4 text-[#A6ACCD]'>Settings</h2>
       <ul>
         {sidebarItems.map((item, index) => (
-          <li
+          <button
             key={index}
-            className='mb-2 text-sm cursor-pointer transition-colors group hover:bg-[#292C35] rounded-lg p-2'
+            onClick={() => setSelectedItem(item.name)}
+            className={`mb-2 w-full text-sm cursor-pointer transition-colors group hover:bg-sd rounded-lg p-2 ${selectedItem === item.name && 'bg-sd'}`}
           >
-            <div className='flex items-center space-x-2 text-[#A6ACCD]/70 group-hover:text-white'>
+            <div
+              className={`flex items-center space-x-2 text-[#A6ACCD]/70 group-hover:text-white ${selectedItem === item.name && 'text-white'}`}
+            >
               <item.icon className='w-4 h-4' />
               <span>{item.name}</span>
             </div>
-          </li>
+          </button>
         ))}
       </ul>
     </div>
