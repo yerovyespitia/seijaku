@@ -1,7 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { PosterGallery } from '../../components/PosterGallery'
-import { Layout } from '../../components/Layout'
-import { ErrorPage } from '../../Error'
+import { PosterGallery } from '@/components/PosterGallery' 
+import { Layout } from '@/components/Layout'
+import { ErrorPage } from '@/Error'
+import { CardGallery } from '@/components/CardGallery'
 
 export const Route = createFileRoute('/category/$categoryId')({
   component: RouteComponent,
@@ -29,5 +30,19 @@ export const Route = createFileRoute('/category/$categoryId')({
 function RouteComponent() {
   const { categoryId } = Route.useLoaderData()
 
-  return <div>Hello {categoryId}</div>
+  return (
+    <Layout>
+      <section className='pt-6 flex justify-between items-center pb-4'>
+        <h1 className='text-2xl mb-0 font-semibold text-txtGray'>
+          {categoryId}
+        </h1>
+      </section>
+
+      {categoryId === 'Continue Watching' || categoryId === 'New Releases' ? (
+        <CardGallery videos={48} />
+      ) : (
+        <PosterGallery videos={48} />
+      )}
+    </Layout>
+  )
 }
