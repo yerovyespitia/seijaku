@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { PlayerSettings } from './components/PlayerSettings'
-import { Sidebar } from './components/Sidebar'
+import { PlayerSettings } from '@/components/PlayerSettings'
+import { Sidebar } from '@/components/Sidebar'
 
 export default function Settings() {
   const [selectedItem, setSelectedItem] = useState('General')

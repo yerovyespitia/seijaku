@@ -1,7 +1,7 @@
-import { CardSlider } from './components/CardSlider'
-import { PosterSlider } from './components/PosterSlider'
-import { Hero } from './components/Hero'
-import { Layout } from './components/Layout'
+import { CardSlider } from '@/components/CardSlider'
+import { PosterSlider } from '@/components/PosterSlider'
+import { Hero } from '@/components/Hero'
+import { Layout } from '@/components/Layout'
 
 export default function App() {
   return (
