@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { Trash } from 'lucide-react'
 
 export const Searchbar = () => {
+  const currentYear = new Date().getFullYear()
   const [search, setSearch] = useState('')
   const [selectedOption, setSelectedOption] = useState({
     genre: '',
     format: '',
     status: '',
+    year: '',
   })
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +28,7 @@ export const Searchbar = () => {
       genre: '',
       format: '',
       status: '',
+      year: '',
     })
   }
 
@@ -96,6 +99,30 @@ export const Searchbar = () => {
         <option value='airing'>Airing</option>
         <option value='finished'>Finished</option>
         <option value='notyet'>Not Yet Aired</option>
+      </select>
+      <select
+        name='year'
+        id='year'
+        value={selectedOption.year}
+        onChange={handleSelectChange}
+        className='h-12 bg-sd w-fit text-txtGray rounded-lg px-4 outline-none cursor-pointer hover:bg-sd/70'
+      >
+        <option
+          value=''
+          selected
+          disabled
+          defaultValue={selectedOption.year}
+        >
+          Choose a year
+        </option>
+        {Array.from({ length: 40 }).map((_, year) => (
+          <option
+            key={year}
+            value={currentYear - year}
+          >
+            {currentYear - year}
+          </option>
+        ))}
       </select>
       <button
         onClick={resetSelects}
