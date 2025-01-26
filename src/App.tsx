@@ -2,28 +2,50 @@ import { CardSlider } from '@/components/CardSlider'
 import { PosterSlider } from '@/components/PosterSlider'
 import { Hero } from '@/components/Hero'
 import { Layout } from '@/components/Layout'
-import { useTopAnimes } from './utils/useTopAnimes'
-import { TopAnimes } from './types/topAnimes'
+import {
+  useAiringMovie,
+  useTop,
+  useTrending,
+  useUpcoming,
+} from './utils/useJikanAnimes'
+import { JikanAnimes } from './types/jikanAnimes'
 import { SkeletonPosterSlider } from './components/SkeletonPosterSlider'
+import { SkeletonHero } from './components/SkeletonHero'
 
 export default function App() {
-  const { data: topAnimes, isLoading } = useTopAnimes(8)
+  const { data: movie, isLoading: loadingMovie } = useAiringMovie(5)
+  const { data: top, isLoading: loadingTop } = useTop(8)
+  const { data: trending, isLoading: loadingTrending } = useTrending(8)
+  const { data: upcoming, isLoading: loadingUpcoming } = useUpcoming(8)
 
   return (
     <>
-      <Hero />
+      {loadingMovie ? <SkeletonHero /> : <Hero animes={movie as JikanAnimes} />}
       <Layout>
-        <CardSlider title='Continue Watching' videos={4} />
-        <CardSlider title='New Releases' videos={4} />
-        {isLoading ? (
-          <SkeletonPosterSlider
-            title='Popular'
-            videos={8}
+        <CardSlider title='Continue Watching' />
+        <CardSlider title='New Releases' />
+        {loadingUpcoming ? (
+          <SkeletonPosterSlider />
+        ) : (
+          <PosterSlider
+            title='Upcoming'
+            animes={upcoming as JikanAnimes}
           />
+        )}
+        {loadingTrending ? (
+          <SkeletonPosterSlider />
+        ) : (
+          <PosterSlider
+            title='Trending Now'
+            animes={trending as JikanAnimes}
+          />
+        )}
+        {loadingTop ? (
+          <SkeletonPosterSlider />
         ) : (
           <PosterSlider
             title='Popular'
-            animes={topAnimes as TopAnimes}
+            animes={top as JikanAnimes}
           />
         )}
       </Layout>
