@@ -37,11 +37,11 @@ export const useUpcoming = (limit: number) => {
   })
 }
 
-export const useAiringMovie = (limit: number) => {
+export const useHeroMovie = (limit: number) => {
   return useQuery({
-    queryKey: ['airing-movie', limit],
+    queryKey: ['hero-movie', limit],
     queryFn: async () => {
-      const data = await invoke('airing_movie', { limit })
+      const data = await invoke('hero_movie', { limit })
       return data
     },
     staleTime: 1000 * 60 * 60,

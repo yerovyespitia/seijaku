@@ -3,7 +3,7 @@ import { PosterSlider } from '@/components/PosterSlider'
 import { Hero } from '@/components/Hero'
 import { Layout } from '@/components/Layout'
 import {
-  useAiringMovie,
+  useHeroMovie,
   useTop,
   useTrending,
   useUpcoming,
@@ -13,7 +13,7 @@ import { SkeletonPosterSlider } from './components/SkeletonPosterSlider'
 import { SkeletonHero } from './components/SkeletonHero'
 
 export default function App() {
-  const { data: movie, isLoading: loadingMovie } = useAiringMovie(5)
+  const { data: movie, isLoading: loadingMovie } = useHeroMovie(4)
   const { data: top, isLoading: loadingTop } = useTop(8)
   const { data: trending, isLoading: loadingTrending } = useTrending(8)
   const { data: upcoming, isLoading: loadingUpcoming } = useUpcoming(8)

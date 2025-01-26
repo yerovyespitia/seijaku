@@ -8,12 +8,12 @@ pub struct AnimeData {
 }
 
 #[command]
-pub async fn airing_movie(limit: u32) -> Result<AnimeData, String> {
+pub async fn hero_movie(limit: u32) -> Result<AnimeData, String> {
     let client = reqwest::Client::new();
 
-    // Jikan API - Airing movies
+    // Jikan API - Hero movies
     let url = format!(
-        "https://api.jikan.moe/v4/top/anime?page=1&limit={}&sfw=true&type=movie&filter=airing",
+        "https://api.jikan.moe/v4/top/anime?page=1&limit={}&sfw=true&type=movie&filter=favorite",
         limit
     );
 
