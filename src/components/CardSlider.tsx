@@ -2,10 +2,10 @@ import { Link } from '@tanstack/react-router'
 
 type CardSliderProps = {
   title: string
-  videos: number
+  videos?: number
 }
 
-export const CardSlider = ({ title, videos }: CardSliderProps) => {
+export const CardSlider = ({ title, videos = 4 }: CardSliderProps) => {
   return (
     <div className='pt-6'>
       <section className='flex justify-between items-center pb-4'>
