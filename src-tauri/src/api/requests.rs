@@ -106,3 +106,28 @@ pub async fn get_top_anime(limit: u32) -> Result<AnimeData, String> {
 
     Ok(response_data)
 }
+
+#[command]
+pub async fn search_anime(search: String, limit: u32) -> Result<AnimeData, String> {
+    let client = reqwest::Client::new();
+
+    // Jikan API - Search Animes
+    let url = format!(
+        "https://api.jikan.moe/v4/anime?q={}&limit={}&sfw=true",
+        search, limit
+    );
+
+    let response = client
+        .get(&url)
+        .send()
+        .await
+        .map_err(|e| format!("Error response: {}", e))?;
+
+    // Parse response
+    let response_data: AnimeData = response
+        .json()
+        .await
+        .map_err(|e| format!("Error parse: {}", e))?;
+
+    Ok(response_data)
+}

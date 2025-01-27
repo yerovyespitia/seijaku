@@ -10,7 +10,8 @@ pub fn run() {
             requests::get_top_anime,
             requests::trending_anime,
             requests::upcoming_anime,
-            requests::hero_movie
+            requests::hero_movie,
+            requests::search_anime
         ])
         .run(tauri::generate_context!())
         .expect("Error while running Seijaku");
