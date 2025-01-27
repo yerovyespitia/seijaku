@@ -1,4 +1,4 @@
-export interface JikanAnimes {
+export interface Jikan {
   pagination: Pagination
   data: Daum[]
 }
