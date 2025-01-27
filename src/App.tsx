@@ -7,8 +7,8 @@ import {
   useTop,
   useTrending,
   useUpcoming,
-} from './utils/useJikanAnimes'
-import { JikanAnimes } from './types/jikanAnimes'
+} from './utils/useJikan'
+import { Jikan } from './types/jikan'
 import { SkeletonPosterSlider } from './components/SkeletonPosterSlider'
 import { SkeletonHero } from './components/SkeletonHero'
 
@@ -20,7 +20,7 @@ export default function App() {
 
   return (
     <>
-      {loadingMovie ? <SkeletonHero /> : <Hero animes={movie as JikanAnimes} />}
+      {loadingMovie ? <SkeletonHero /> : <Hero animes={movie as Jikan} />}
       <Layout>
         <CardSlider title='Continue Watching' />
         <CardSlider title='New Releases' />
@@ -29,7 +29,7 @@ export default function App() {
         ) : (
           <PosterSlider
             title='Upcoming'
-            animes={upcoming as JikanAnimes}
+            animes={upcoming as Jikan}
           />
         )}
         {loadingTrending ? (
@@ -37,7 +37,7 @@ export default function App() {
         ) : (
           <PosterSlider
             title='Trending Now'
-            animes={trending as JikanAnimes}
+            animes={trending as Jikan}
           />
         )}
         {loadingTop ? (
@@ -45,7 +45,7 @@ export default function App() {
         ) : (
           <PosterSlider
             title='Popular'
-            animes={top as JikanAnimes}
+            animes={top as Jikan}
           />
         )}
       </Layout>

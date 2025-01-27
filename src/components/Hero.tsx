@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Badges } from './Badges'
-import { JikanAnimes } from '@/types/jikanAnimes'
+import { Jikan } from '@/types/jikan'
 
 type HeroProps = {
-  animes: JikanAnimes
+  animes: Jikan
 }
 
 export const Hero = ({ animes }: HeroProps) => {

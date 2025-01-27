@@ -1,9 +1,9 @@
-import { JikanAnimes } from '@/types/jikanAnimes'
+import { Jikan } from '@/types/jikan'
 import { Link } from '@tanstack/react-router'
 
 type PosterSliderProps = {
   title: string
-  animes: JikanAnimes
+  animes: Jikan
 }
 
 export const PosterSlider = ({ title, animes }: PosterSliderProps) => {
