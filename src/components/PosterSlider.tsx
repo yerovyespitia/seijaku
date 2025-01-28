@@ -34,7 +34,7 @@ export const PosterSlider = ({ title, animes }: PosterSliderProps) => {
                 alt={anime.title}
               />
               <div className='absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300' />
-              <article className='hidden group-hover:flex justify-center items-center absolute inset-0 font-medium text-center text-sm px-3 text-white transition-all duration-300'>
+              <article className='hidden group-hover:flex justify-center items-center absolute inset-0 font-semibold text-center text-sm px-3 text-white transition-all duration-300'>
                 {anime.title}
               </article>
             </section>
