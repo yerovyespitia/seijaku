@@ -1,14 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { PosterGallery } from '@/components/PosterGallery' 
 import { Layout } from '@/components/Layout'
 import { ErrorPage } from '@/Error'
 import { CardGallery } from '@/components/CardGallery'
+import { SkeletonPosterGallery } from '@/components/SkeletonPosterGallery'
 
 export const Route = createFileRoute('/category/$categoryId')({
   component: RouteComponent,
   loader: async ({ params }) => {
-    // throw new Error()
-    // await new Promise((resolve) => setTimeout(resolve, 1000))
     return {
       categoryId: params.categoryId,
     }
@@ -16,7 +14,7 @@ export const Route = createFileRoute('/category/$categoryId')({
   pendingComponent: () => (
     <Layout>
       <div className='py-6'>
-        <PosterGallery videos={48} />
+        <SkeletonPosterGallery videos={48} />
       </div>
     </Layout>
   ),
@@ -41,7 +39,7 @@ function RouteComponent() {
       {categoryId === 'Continue Watching' || categoryId === 'New Releases' ? (
         <CardGallery videos={48} />
       ) : (
-        <PosterGallery videos={48} />
+        <SkeletonPosterGallery videos={48} />
       )}
     </Layout>
   )
