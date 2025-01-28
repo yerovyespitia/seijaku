@@ -1,6 +1,18 @@
 import { invoke } from '@tauri-apps/api/core'
 import { useQuery } from '@tanstack/react-query'
 
+export const useFind = (search: string, limit: number = 25) => {
+  return useQuery({
+    queryKey: ['search-anime', search, limit],
+    queryFn: async () => {
+      const data = await invoke('search_anime', { search, limit })
+      return data
+    },
+    staleTime: 1000 * 60 * 60,
+    retry: 2,
+  })
+}
+
 export const useTop = (limit: number) => {
   return useQuery({
     queryKey: ['top-anime', limit],

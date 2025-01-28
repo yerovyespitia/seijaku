@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import { Trash } from 'lucide-react'
 
-export const Searchbar = () => {
+type SearchbarProps = {
+  search: string
+  setSearch: (value: string) => void
+}
+
+export const Searchbar = ({ search, setSearch }: SearchbarProps) => {
   const currentYear = new Date().getFullYear()
-  const [search, setSearch] = useState('')
   const [selectedOption, setSelectedOption] = useState({
     genre: '',
     format: '',
