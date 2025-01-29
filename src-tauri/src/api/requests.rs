@@ -108,14 +108,54 @@ pub async fn get_top_anime(limit: u32) -> Result<AnimeData, String> {
 }
 
 #[command]
-pub async fn search_anime(search: String, limit: u32) -> Result<AnimeData, String> {
+pub async fn relation_anime(id: u32) -> Result<AnimeData, String> {
+    let client = reqwest::Client::new();
+
+    // Jikan API - Anime Relations
+    let url = format!("https://api.jikan.moe/v4/anime/{}/relations", id);
+
+    let response = client
+        .get(&url)
+        .send()
+        .await
+        .map_err(|e| format!("Error response: {}", e))?;
+
+    // Parse response
+    let response_data: AnimeData = response
+        .json()
+        .await
+        .map_err(|e| format!("Error parse: {}", e))?;
+
+    Ok(response_data)
+}
+
+#[command]
+pub async fn search_anime(
+    search: String,
+    limit: u32,
+    status: Option<String>,
+    format: Option<String>,
+    year: Option<String>,
+) -> Result<AnimeData, String> {
     let client = reqwest::Client::new();
 
     // Jikan API - Search Animes
-    let url = format!(
+    let mut url = format!(
         "https://api.jikan.moe/v4/anime?q={}&limit={}&sfw=true",
         search, limit
     );
+
+    if let Some(status_value) = status {
+        url = format!("{}&status={}", url, status_value);
+    }
+
+    if let Some(year_value) = year {
+        url = format!("{}&start_date={}-01-01", url, year_value);
+    }
+
+    if let Some(format_value) = format {
+        url = format!("{}&type={}", url, format_value);
+    }
 
     let response = client
         .get(&url)
