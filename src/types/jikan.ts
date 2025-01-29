@@ -1,6 +1,6 @@
 export interface Jikan {
   pagination: Pagination
-  data: Daum[]
+  data: Anime[]
 }
 
 export interface Pagination {
@@ -16,7 +16,7 @@ export interface Items {
   per_page: number
 }
 
-export interface Daum {
+export interface Anime {
   mal_id: number
   url: string
   images: Images
