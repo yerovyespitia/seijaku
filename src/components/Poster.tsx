@@ -6,7 +6,7 @@ type PosterProps = { anime: Anime }
 export const Poster = ({ anime }: PosterProps) => {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 0 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       whileTap={{ scale: 0.85 }}
       transition={{ duration: 1 }}
@@ -16,11 +16,11 @@ export const Poster = ({ anime }: PosterProps) => {
         <img
           className='w-full h-full object-cover'
           src={anime.images.jpg.large_image_url}
-          alt={anime.title_english}
+          alt={anime.title_english || anime.title}
         />
         <div className='absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300' />
         <article className='hidden group-hover:flex justify-center items-center absolute inset-0 font-semibold text-center text-sm px-3 text-white transition-all duration-300'>
-          {anime.title_english ? anime.title_english : anime.title}
+          {anime.title_english || anime.title}
         </article>
       </section>
     </motion.section>
