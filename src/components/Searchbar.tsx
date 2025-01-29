@@ -1,19 +1,26 @@
-import { useState } from 'react'
 import { Trash } from 'lucide-react'
+
+type SelectedOption = {
+  genre: string
+  format: string
+  status: string
+  year: string
+}
 
 type SearchbarProps = {
   search: string
   setSearch: (value: string) => void
+  selectedOption: SelectedOption
+  setSelectedOption: (value: SelectedOption) => void
 }
 
-export const Searchbar = ({ search, setSearch }: SearchbarProps) => {
+export const Searchbar = ({
+  search,
+  setSearch,
+  selectedOption,
+  setSelectedOption,
+}: SearchbarProps) => {
   const currentYear = new Date().getFullYear()
-  const [selectedOption, setSelectedOption] = useState({
-    genre: '',
-    format: '',
-    status: '',
-    year: '',
-  })
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
@@ -54,7 +61,6 @@ export const Searchbar = ({ search, setSearch }: SearchbarProps) => {
       >
         <option
           value=''
-          selected
           disabled
           defaultValue={selectedOption.genre}
         >
@@ -75,15 +81,20 @@ export const Searchbar = ({ search, setSearch }: SearchbarProps) => {
       >
         <option
           value=''
-          selected
           disabled
           defaultValue={selectedOption.format}
         >
           Choose a format
         </option>
-        <option value='tvshot'>TV Show</option>
+        <option value='tv'>TV</option>
         <option value='movie'>Movie</option>
+        <option value='special'>Special</option>
+        <option value='ona'>ONA</option>
         <option value='ova'>OVA</option>
+        <option value='music'>Music</option>
+        <option value='cm'>CM</option>
+        <option value='pv'>PV</option>
+        <option value='tv_special'>TV Special</option>
       </select>
       <select
         name='status'
@@ -94,15 +105,14 @@ export const Searchbar = ({ search, setSearch }: SearchbarProps) => {
       >
         <option
           value=''
-          selected
           disabled
           defaultValue={selectedOption.status}
         >
           Choose a status
         </option>
         <option value='airing'>Airing</option>
-        <option value='finished'>Finished</option>
-        <option value='notyet'>Not Yet Aired</option>
+        <option value='complete'>Complete</option>
+        <option value='upcoming'>Upcoming</option>
       </select>
       <select
         name='year'
@@ -113,7 +123,6 @@ export const Searchbar = ({ search, setSearch }: SearchbarProps) => {
       >
         <option
           value=''
-          selected
           disabled
           defaultValue={selectedOption.year}
         >

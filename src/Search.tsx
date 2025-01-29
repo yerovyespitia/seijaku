@@ -7,8 +7,14 @@ import { Jikan } from '@/types/jikan'
 import { SkeletonPosterGallery } from '@/components/SkeletonPosterGallery'
 
 export default function Search() {
+  const [selectedOption, setSelectedOption] = useState({
+    genre: '',
+    format: '',
+    status: '',
+    year: '',
+  })
   const [search, setSearch] = useState('')
-  const { data, isFetching } = useFind(search, 25)
+  const { data, isFetching } = useFind(search, 25, selectedOption)
   console.log(data)
 
   return (
@@ -16,6 +22,8 @@ export default function Search() {
       <Searchbar
         search={search}
         setSearch={setSearch}
+        selectedOption={selectedOption}
+        setSelectedOption={setSelectedOption}
       />
       {isFetching ? (
         <SkeletonPosterGallery videos={32} />
