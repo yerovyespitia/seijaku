@@ -1,4 +1,4 @@
-import { PosterGallery } from './PosterGallery'
+import { SkeletonPosterGallery } from './SkeletonPosterGallery'
 
 type GroupProps = {
   name: string
@@ -11,7 +11,7 @@ export const Group = ({ name, items }: GroupProps) => {
       <h2 className='text-xl font-semibold'>{name}</h2>
       <p className='text-sm text-txtGray/70 pt-2'>{items} items</p>
       <section className='pt-4'>
-        <PosterGallery videos={8} />
+        <SkeletonPosterGallery videos={8} />
       </section>
     </section>
   )
