@@ -12,6 +12,7 @@ pub fn run() {
             requests::upcoming_anime,
             requests::hero_movie,
             requests::relation_anime,
+            requests::details_anime,
             requests::search_anime,
         ])
         .run(tauri::generate_context!())
