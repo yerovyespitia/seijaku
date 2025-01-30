@@ -33,6 +33,18 @@ export const useFind = (
   })
 }
 
+export const useDetails = (id: number) => {
+  return useQuery({
+    queryKey: ['details-anime', id],
+    queryFn: async () => {
+      const data = await invoke('details_anime', { id })
+      return data
+    },
+    staleTime: 1000 * 60 * 60,
+    retry: 2,
+  })
+}
+
 export const useTop = (limit: number) => {
   return useQuery({
     queryKey: ['top-anime', limit],
