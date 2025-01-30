@@ -1,3 +1,14 @@
+export interface Details {
+  data: AnimeDetails
+}
+
+export type AnimeDetails = Anime & {
+  relations: Relation[]
+  themes: Theme2
+  external: External[]
+  streaming: Streaming[]
+}
+
 export interface Jikan {
   pagination: Pagination
   data: Anime[]
@@ -154,6 +165,33 @@ export interface Genre {
 export interface Demographic {
   mal_id: number
   type: string
+  name: string
+  url: string
+}
+
+export interface Relation {
+  relation: string
+  entry: Entry[]
+}
+
+export interface Entry {
+  mal_id: number
+  type: string
+  name: string
+  url: string
+}
+
+export interface Theme2 {
+  openings: string[]
+  endings: string[]
+}
+
+export interface External {
+  name: string
+  url: string
+}
+
+export interface Streaming {
   name: string
   url: string
 }
