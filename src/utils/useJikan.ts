@@ -1,5 +1,12 @@
 import { invoke } from '@tauri-apps/api/core'
 import { useQuery } from '@tanstack/react-query'
+import {
+  getHero,
+  getInfo,
+  getPopulars,
+  getTrending,
+  getUpcoming,
+} from './jikanData'
 
 type AnimeFilters = {
   genre?: string
@@ -36,10 +43,7 @@ export const useFind = (
 export const useDetails = (id: number) => {
   return useQuery({
     queryKey: ['details-anime', id],
-    queryFn: async () => {
-      const data = await invoke('details_anime', { id })
-      return data
-    },
+    queryFn: async () => getInfo(id),
     staleTime: 1000 * 60 * 60,
     retry: 2,
   })
@@ -48,10 +52,7 @@ export const useDetails = (id: number) => {
 export const useTop = (limit: number) => {
   return useQuery({
     queryKey: ['top-anime', limit],
-    queryFn: async () => {
-      const data = await invoke('get_top_anime', { limit })
-      return data
-    },
+    queryFn: async () => getPopulars(limit),
     staleTime: 1000 * 60 * 60,
     retry: 2,
   })
@@ -60,10 +61,7 @@ export const useTop = (limit: number) => {
 export const useTrending = (limit: number) => {
   return useQuery({
     queryKey: ['trending-anime', limit],
-    queryFn: async () => {
-      const data = await invoke('trending_anime', { limit })
-      return data
-    },
+    queryFn: async () => getTrending(limit),
     staleTime: 1000 * 60 * 60,
     retry: 2,
   })
@@ -72,10 +70,7 @@ export const useTrending = (limit: number) => {
 export const useUpcoming = (limit: number) => {
   return useQuery({
     queryKey: ['upcoming-anime', limit],
-    queryFn: async () => {
-      const data = await invoke('upcoming_anime', { limit })
-      return data
-    },
+    queryFn: async () => getUpcoming(limit),
     staleTime: 1000 * 60 * 60,
     retry: 2,
   })
@@ -83,11 +78,8 @@ export const useUpcoming = (limit: number) => {
 
 export const useHeroMovie = (limit: number) => {
   return useQuery({
-    queryKey: ['hero-movie', limit],
-    queryFn: async () => {
-      const data = await invoke('hero_movie', { limit })
-      return data
-    },
+    queryKey: ['hero-anime', limit],
+    queryFn: async () => getHero(limit),
     staleTime: 1000 * 60 * 60,
     retry: 2,
   })
