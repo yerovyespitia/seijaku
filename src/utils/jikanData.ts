@@ -1,3 +1,5 @@
+import { fetch } from '@tauri-apps/plugin-http'
+
 export const getPopulars = async (limit: number) => {
   const res = await fetch(
     `https://api.jikan.moe/v4/top/anime?page=1&limit=${limit}&sfw=true`
