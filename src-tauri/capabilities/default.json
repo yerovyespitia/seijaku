@@ -8,6 +8,13 @@
   "permissions": [
     "core:window:default",
     "core:window:allow-start-dragging",
-    "http:default"
+    {
+      "identifier": "http:default",
+      "allow": [
+        {
+          "url": "https://api.jikan.moe/v4/*"
+        }
+      ]
+    }
   ]
 }
