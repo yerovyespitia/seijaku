@@ -1,6 +1,7 @@
 import { Jikan } from '@/types/jikan'
 import { Link } from '@tanstack/react-router'
 import { Poster } from './Poster'
+import { Button } from './ui/Button'
 
 type PosterSliderProps = {
   title: string
@@ -16,9 +17,7 @@ export const PosterSlider = ({ title, animes }: PosterSliderProps) => {
           to='/category/$categoryId'
           params={{ categoryId: title }}
         >
-          <button className='px-5 py-2 text-sm font-medium rounded-md text-txtGray/70 bg-sd hover:bg-sd/70 hover:text-zinc-300'>
-            View More
-          </button>
+          <Button>View more</Button>
         </Link>
       </section>
 

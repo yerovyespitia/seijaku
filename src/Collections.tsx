@@ -1,6 +1,7 @@
 import { Plus } from 'lucide-react'
 import { Group } from './components/Group'
 import { Layout } from './components/Layout'
+import { Button } from './components/ui/Button'
 
 export default function Collections() {
   const collections = [
@@ -15,9 +16,9 @@ export default function Collections() {
         <h1 className='text-2xl mb-0 font-semibold text-txtGray'>
           Collections
         </h1>
-        <button className='flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-md text-txtGray/70 bg-sd hover:bg-sd/70 hover:text-zinc-300'>
+        <Button>
           <Plus size={16} /> Add Collection
-        </button>
+        </Button>
       </section>
 
       <div className='flex flex-col gap-4'>
