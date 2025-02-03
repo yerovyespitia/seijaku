@@ -4,6 +4,7 @@ import { Layout } from '@/components/Layout'
 import { Banner } from '@/components/Banner'
 import { useDetails } from '@/utils/useJikan'
 import { Details } from '@/types/jikan'
+import { SkeletonHero } from '@/components/SkeletonHero'
 
 export const Route = createFileRoute('/info/$infoId')({
   component: RouteComponent,
@@ -12,11 +13,7 @@ export const Route = createFileRoute('/info/$infoId')({
       infoId: params.infoId,
     }
   },
-  pendingComponent: () => (
-    <Layout>
-      <div className='py-6'>Loading...</div>
-    </Layout>
-  ),
+  pendingComponent: () => <SkeletonHero />,
   errorComponent: () => (
     <div className='px-6'>
       <ErrorPage />
@@ -29,7 +26,9 @@ function RouteComponent() {
   const { data: anime, isLoading } = useDetails(Number(infoId))
   console.log(anime as Details)
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading || !anime) {
+    return <SkeletonHero />
+  }
 
   return (
     <>
