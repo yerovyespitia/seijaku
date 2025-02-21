@@ -1,5 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
-import App from '@/App'
+import { Layout } from '@/components/Layout'
+import { SkeletonPosterSlider } from '../components/SkeletonPosterSlider'
+import { SkeletonHero } from '../components/SkeletonHero'
+import { SkeletonCardSlider } from '../components/SkeletonCardSlider'
 import { ErrorPage } from '@/Error'
 
 export const Route = createFileRoute('/')({
@@ -12,5 +15,16 @@ export const Route = createFileRoute('/')({
 })
 
 function Index() {
-  return <App />
+  return (
+    <>
+      <SkeletonHero />
+      <Layout>
+        <SkeletonCardSlider />
+        <SkeletonCardSlider />
+        <SkeletonPosterSlider />
+        <SkeletonPosterSlider />
+        <SkeletonPosterSlider />
+      </Layout>
+    </>
+  )
 }
