@@ -1,6 +1,11 @@
-import { createRootRoute, Link, Outlet, ScrollRestoration } from '@tanstack/react-router'
+import {
+  createRootRoute,
+  Link,
+  Outlet,
+  ScrollRestoration,
+} from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
-import { Bell, Settings, User } from 'lucide-react'
+import { Bell, Settings, User, Users } from 'lucide-react'
 
 const tabs = [
   {
@@ -38,11 +43,28 @@ export const Route = createRootRoute({
           </div>
           <div className='absolute right-6'>
             <div className='flex items-center space-x-4 justify-end'>
-              <Bell className='size-4 text-txtGray hover:text-white cursor-pointer' />
-              <Link to='/account'>
+              <Link
+                to='/'
+                title='Notifications'
+              >
+                <Bell className='size-4 text-txtGray hover:text-white cursor-pointer' />
+              </Link>
+              <Link
+                to='/'
+                title='Watch together'
+              >
+                <Users className='size-4 text-txtGray hover:text-white cursor-pointer' />
+              </Link>
+              <Link
+                to='/account'
+                title='Sign in'
+              >
                 <User className='size-4 text-txtGray hover:text-white cursor-pointer' />
               </Link>
-              <Link to='/settings'>
+              <Link
+                to='/settings'
+                title='Settings'
+              >
                 <Settings className='size-4 text-txtGray hover:text-white cursor-pointer' />
               </Link>
             </div>
@@ -50,7 +72,7 @@ export const Route = createRootRoute({
         </div>
       </section>
       <Outlet />
-      <ScrollRestoration scrollBehavior='instant'/>
+      <ScrollRestoration scrollBehavior='instant' />
       <TanStackRouterDevtools />
     </>
   ),
