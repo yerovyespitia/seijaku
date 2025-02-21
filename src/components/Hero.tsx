@@ -28,7 +28,7 @@ export const Hero = ({ animes }: HeroProps) => {
     <section
       className='relative aspect-video bg-no-repeat h-full bg-cover bg-center'
       style={{
-        backgroundImage: `url(${currentAnime.trailer.images.maximum_image_url})`,
+        backgroundImage: `url(${currentAnime.images.jpg.large_image_url || currentAnime.images.jpg.image_url})`,
       }}
     >
       <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-1/3 flex items-center justify-center'></div>
@@ -56,7 +56,7 @@ export const Hero = ({ animes }: HeroProps) => {
         <ChevronRight className='size-6' />
       </button>
       <div className='absolute bottom-4 left-0 right-0 flex justify-center space-x-2'>
-        {Array.from({ length: 4 }).map((_, index) => (
+        {Array.from({ length: animes.data.length }).map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentMovie(index)}
