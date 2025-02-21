@@ -4,6 +4,8 @@ import { SkeletonPosterSlider } from '../components/SkeletonPosterSlider'
 import { SkeletonHero } from '../components/SkeletonHero'
 import { SkeletonCardSlider } from '../components/SkeletonCardSlider'
 import { ErrorPage } from '@/Error'
+import { Hero } from '@/components/Hero'
+import { useHeroMovie } from '@/queries/useJikan'
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -15,9 +17,26 @@ export const Route = createFileRoute('/')({
 })
 
 function Index() {
+  const { data: hero, isLoading } = useHeroMovie(5)
+
+  if (isLoading) {
+    return (
+      <>
+        <SkeletonHero />
+        <Layout>
+          <SkeletonCardSlider />
+          <SkeletonCardSlider />
+          <SkeletonPosterSlider />
+          <SkeletonPosterSlider />
+          <SkeletonPosterSlider />
+        </Layout>
+      </>
+    )
+  }
+
   return (
     <>
-      <SkeletonHero />
+      <Hero animes={hero} />
       <Layout>
         <SkeletonCardSlider />
         <SkeletonCardSlider />
