@@ -15,10 +15,6 @@ const tabs = [
     href: '/collections',
     label: 'Collections',
   },
-  {
-    href: '/downloads',
-    label: 'Downloads',
-  },
 ]
 
 export const Route = createRootRoute({
