@@ -1,3 +1,4 @@
+import { Details } from '@/types/jikan'
 import { fetch } from '@tauri-apps/plugin-http'
 
 export const getPopulars = async (limit: number) => {
@@ -5,7 +6,7 @@ export const getPopulars = async (limit: number) => {
     `https://api.jikan.moe/v4/top/anime?page=1&limit=${limit}&sfw=true`
   )
 
-  const data = res.json()
+  const data = await res.json()
 
   return data
 }
@@ -13,7 +14,7 @@ export const getPopulars = async (limit: number) => {
 export const getInfo = async (id: number) => {
   const res = await fetch(`https://api.jikan.moe/v4/anime/${id}/full`)
 
-  const data = res.json()
+  const data: Details = await res.json()
 
   return data
 }
@@ -23,7 +24,7 @@ export const getTrending = async (limit: number) => {
     `https://api.jikan.moe/v4/top/anime?&filter=airing&limit=${limit}&sfw=true&type=tv`
   )
 
-  const data = res.json()
+  const data = await res.json()
 
   return data
 }
@@ -33,7 +34,7 @@ export const getUpcoming = async (limit: number) => {
     `https://api.jikan.moe/v4/top/anime?page=1&limit=${limit}&sfw=true&filter=upcoming`
   )
 
-  const data = res.json()
+  const data = await res.json()
 
   return data
 }
@@ -43,7 +44,7 @@ export const getHero = async (limit: number) => {
     `https://api.jikan.moe/v4/top/anime?page=1&limit=${limit}&sfw=true&type=movie&filter=favorite`
   )
 
-  const data = res.json()
+  const data = await res.json()
 
   return data
 }
@@ -59,7 +60,7 @@ export const getSearching = async (
     `https://api.jikan.moe/v4/anime?q=${q}&limit=${limit}&sfw=true&status=${status}&start_date=${year}-01-01&type=${type}`
   )
 
-  const data = res.json()
+  const data = await res.json()
 
   return data
 }
