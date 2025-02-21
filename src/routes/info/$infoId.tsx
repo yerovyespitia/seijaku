@@ -1,9 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ErrorPage } from '@/Error'
 import { Layout } from '@/components/Layout'
-import { useDetails } from '@/utils/useJikan'
+import { useDetails } from '@/queries/useJikan'
 import { SkeletonHero } from '@/components/SkeletonHero'
 import { Banner } from '@/components/Banner'
+import { SkeletonCards } from '@/components/SkeletonCards'
 
 export const Route = createFileRoute('/info/$infoId')({
   component: RouteComponent,
@@ -27,7 +28,14 @@ function RouteComponent() {
   )
 
   if (loadingDetails || !details) {
-    return <SkeletonHero />
+    return (
+      <>
+        <SkeletonHero />
+        <Layout>
+          <SkeletonCards />
+        </Layout>
+      </>
+    )
   }
 
   console.log('details', details)
@@ -36,16 +44,7 @@ function RouteComponent() {
     <>
       <Banner anime={details} />
       <Layout>
-        <section className='pt-6'>
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-            {[...Array(40)].map((_, i) => (
-              <div
-                key={i}
-                className='bg-sd aspect-video rounded-lg animate-pulse'
-              />
-            ))}
-          </div>
-        </section>
+        <SkeletonCards videos={40} />
       </Layout>
     </>
   )
