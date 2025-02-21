@@ -5,7 +5,7 @@ import { SkeletonPosterGallery } from '@/components/SkeletonPosterGallery'
 import { useState } from 'react'
 import { Searchbar } from '@/components/Searchbar'
 import { PosterGallery } from '@/components/PosterGallery'
-import { useFind } from '@/utils/useJikan'
+import { useFind } from '@/queries/useJikan'
 import { Jikan } from '@/types/jikan'
 
 export const Route = createFileRoute('/search')({
