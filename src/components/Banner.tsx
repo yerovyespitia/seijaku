@@ -1,16 +1,17 @@
 import { Details } from '@/types/jikan'
+import { ArrowLeft } from 'lucide-react'
+import { Badges } from './Badges'
+import { useRouter } from '@tanstack/react-router'
+import { truncatedDesc } from '@/utils'
 
 type BannerProps = {
   anime: Details
 }
 
 export const Banner = ({ anime }: BannerProps) => {
-  let synopsis = anime.data.synopsis
-  const indexDesc = synopsis.indexOf('.')
-  const description = synopsis
-    .split('')
-    .slice(0, indexDesc + 1)
-    .join('')
+  const router = useRouter()
+  const categories = anime.data.genres.map((genre) => genre.name)
+  const description = truncatedDesc(anime)
 
   return (
     <section
@@ -20,11 +21,19 @@ export const Banner = ({ anime }: BannerProps) => {
       }}
     >
       <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-1/3 flex items-center justify-center'></div>
+      <div className='absolute top-0 left-0 right-0 bg-gradient-to-t from-transparent to-black h-16 flex items-center justify-center opacity-80'></div>
+      <button
+        className='absolute top-3 left-8'
+        onClick={() => router.history.back()}
+      >
+        <ArrowLeft className='size-8 text-zinc-300 cursor-pointer' />
+      </button>
       <div className='absolute bottom-8 left-8 right-8'>
         <h2 className='text-4xl font-bold text-zinc-300 mb-3'>
           {anime.data.title_english || anime.data.title}
         </h2>
-        <p className='text-txtGray/90 w-1/3'>{description}</p>
+        <Badges categories={categories} />
+        <p className='text-txtGray/90 w-1/3 line-clamp-3'>{description}</p>
       </div>
     </section>
   )
