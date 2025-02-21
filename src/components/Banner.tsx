@@ -5,13 +5,18 @@ type BannerProps = {
 }
 
 export const Banner = ({ anime }: BannerProps) => {
-  console.log('banner', anime)
+  let synopsis = anime.data.synopsis
+  const indexDesc = synopsis.indexOf('.')
+  const description = synopsis
+    .split('')
+    .slice(0, indexDesc + 1)
+    .join('')
 
   return (
     <section
       className='relative aspect-video bg-no-repeat h-full bg-cover bg-center'
       style={{
-        backgroundImage: `url(${anime.data.trailer.images.maximum_image_url})`,
+        backgroundImage: `url(${anime.data.images.jpg.large_image_url || anime.data.images.jpg.image_url})`,
       }}
     >
       <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-1/3 flex items-center justify-center'></div>
@@ -19,9 +24,7 @@ export const Banner = ({ anime }: BannerProps) => {
         <h2 className='text-4xl font-bold text-zinc-300 mb-3'>
           {anime.data.title_english || anime.data.title}
         </h2>
-        <p className='text-txtGray/90 w-1/3 line-clamp-2'>
-          {anime.data.synopsis}
-        </p>
+        <p className='text-txtGray/90 w-1/3'>{description}</p>
       </div>
     </section>
   )
