@@ -1,11 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ErrorPage } from '@/Error'
 import { Layout } from '@/components/Layout'
-import { Banner } from '@/components/Banner'
 import { useDetails } from '@/utils/useJikan'
-import { Details } from '@/types/jikan'
 import { SkeletonHero } from '@/components/SkeletonHero'
-import { useListOfEpisodes } from '@/utils/useZenAniZip'
+import { Banner } from '@/components/Banner'
 
 export const Route = createFileRoute('/info/$infoId')({
   component: RouteComponent,
@@ -24,22 +22,31 @@ export const Route = createFileRoute('/info/$infoId')({
 
 function RouteComponent() {
   const { infoId } = Route.useLoaderData()
-  const { data: anime, isLoading: loadingDetails } = useDetails(Number(infoId))
-  const { data: list, isLoading: loadingEpisodes } = useListOfEpisodes(
+  const { data: details, isLoading: loadingDetails } = useDetails(
     Number(infoId)
   )
-  console.log(anime as Details)
-  console.log('ff', list)
-  console.log('episodes', list.episodes)
 
-  if (loadingDetails || loadingEpisodes || !anime || !list) {
+  if (loadingDetails || !details) {
     return <SkeletonHero />
   }
 
+  console.log('details', details)
+
   return (
     <>
-      <Banner anime={anime as Details} />
-      <Layout>{infoId}</Layout>
+      <Banner anime={details} />
+      <Layout>
+        <section className='pt-6'>
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+            {[...Array(40)].map((_, i) => (
+              <div
+                key={i}
+                className='bg-sd aspect-video rounded-lg animate-pulse'
+              />
+            ))}
+          </div>
+        </section>
+      </Layout>
     </>
   )
 }
