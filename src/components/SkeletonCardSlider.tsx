@@ -1,3 +1,5 @@
+import { SkeletonCard } from './SkeletonCard'
+
 type CardSliderProps = {
   videos?: number
 }
@@ -11,10 +13,7 @@ export const SkeletonCardSlider = ({ videos = 4 }: CardSliderProps) => {
       </section>
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
         {[...Array(videos)].map((_, i) => (
-          <div
-            key={i}
-            className='bg-sd aspect-video rounded-lg animate-pulse'
-          />
+          <SkeletonCard key={i} />
         ))}
       </div>
     </div>
