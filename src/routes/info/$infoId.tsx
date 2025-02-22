@@ -5,6 +5,7 @@ import { useDetails } from '@/queries/useJikan'
 import { SkeletonHero } from '@/components/SkeletonHero'
 import { Banner } from '@/components/Banner'
 import { SkeletonCards } from '@/components/SkeletonCards'
+import { useAnimeZip } from '@/queries/useAniZip'
 
 export const Route = createFileRoute('/info/$infoId')({
   component: RouteComponent,
@@ -23,11 +24,12 @@ export const Route = createFileRoute('/info/$infoId')({
 
 function RouteComponent() {
   const { infoId } = Route.useLoaderData()
-  const { data: details, isLoading: loadingDetails } = useDetails(
-    Number(infoId)
-  )
 
-  if (loadingDetails || !details) {
+  let numId = Number(infoId)
+  const { data: zip, isLoading: loadingZip } = useAnimeZip(numId)
+  const { data: details, isLoading: loadingDetails } = useDetails(numId)
+
+  if (loadingDetails || !details || loadingZip) {
     return (
       <>
         <SkeletonHero />
@@ -39,10 +41,14 @@ function RouteComponent() {
   }
 
   console.log('details', details)
+  console.log('zip', zip)
 
   return (
     <>
-      <Banner anime={details} />
+      <Banner
+        anime={details}
+        zip={zip}
+      />
       <Layout>
         <SkeletonCards videos={40} />
       </Layout>
