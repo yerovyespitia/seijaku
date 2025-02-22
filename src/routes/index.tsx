@@ -28,11 +28,11 @@ function Index() {
       <>
         <SkeletonHero />
         <Layout>
-          <SkeletonCardSlider />
-          <SkeletonCardSlider />
+          {/* <SkeletonCardSlider />
+          <SkeletonCardSlider /> */}
           <SkeletonPosterSlider />
           <SkeletonPosterSlider />
-          <SkeletonPosterSlider />
+          {/* <SkeletonPosterSlider /> */}
         </Layout>
       </>
     )
@@ -42,8 +42,8 @@ function Index() {
     <>
       <Hero animes={hero} />
       <Layout>
-        <SkeletonCardSlider />
-        <SkeletonCardSlider />
+        {/* <SkeletonCardSlider />
+        <SkeletonCardSlider /> */}
         {loadingUpcoming ? (
           <SkeletonCardSlider />
         ) : (
