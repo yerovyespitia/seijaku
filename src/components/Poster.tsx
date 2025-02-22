@@ -11,7 +11,7 @@ export const Poster = ({ anime }: PosterProps) => {
       params={{ infoId: anime.mal_id.toString() }}
     >
       <motion.section
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
         whileTap={{ scale: 0.85 }}
         transition={{ duration: 1 }}
