@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Layout } from '@/components/Layout'
 import { ErrorPage } from '@/Error'
-import { CardGallery } from '@/components/CardGallery'
 import { SkeletonPosterGallery } from '@/components/SkeletonPosterGallery'
 
 export const Route = createFileRoute('/category/$categoryId')({
@@ -36,11 +35,10 @@ function RouteComponent() {
         </h1>
       </section>
 
-      {categoryId === 'Continue Watching' || categoryId === 'New Releases' ? (
-        <CardGallery videos={48} />
-      ) : (
-        <SkeletonPosterGallery videos={48} />
-      )}
+      {categoryId === 'Continue Watching' ||
+        (categoryId === 'New Releases' && (
+          <SkeletonPosterGallery videos={48} />
+        ))}
     </Layout>
   )
 }
