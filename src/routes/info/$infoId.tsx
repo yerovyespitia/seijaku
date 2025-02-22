@@ -7,6 +7,7 @@ import { Banner } from '@/components/Banner'
 import { SkeletonCards } from '@/components/SkeletonCards'
 import { useAnimeZip } from '@/queries/useAniZip'
 import { CardGallery } from '@/components/CardGallery'
+import { AniZip } from '@/types/zip'
 
 export const Route = createFileRoute('/info/$infoId')({
   component: RouteComponent,
@@ -48,10 +49,10 @@ function RouteComponent() {
     <>
       <Banner
         anime={details}
-        zip={zip}
+        zip={zip as AniZip}
       />
       <Layout>
-        <CardGallery list={zip} />
+        <CardGallery list={zip as AniZip} />
       </Layout>
     </>
   )

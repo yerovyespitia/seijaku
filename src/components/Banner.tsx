@@ -3,10 +3,11 @@ import { ArrowLeft } from 'lucide-react'
 import { Badges } from './Badges'
 import { useRouter } from '@tanstack/react-router'
 import { truncatedDesc } from '@/utils'
+import { AniZip } from '@/types/zip'
 
 type BannerProps = {
   anime: Details
-  zip: any
+  zip: AniZip
 }
 
 export const Banner = ({ anime, zip }: BannerProps) => {

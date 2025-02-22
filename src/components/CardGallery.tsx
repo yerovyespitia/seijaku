@@ -1,10 +1,14 @@
+import { AniZip, Episode } from '@/types/zip'
+
 type CardGalleryProps = {
-  list: any
+  list: AniZip
 }
 
 export const CardGallery = ({ list }: CardGalleryProps) => {
   console.log('list', list.episodes)
-  const episodes = Object.values(list.episodes)
+  const episodes = Object.values(list.episodes).filter(
+    (episode): episode is Episode => typeof episode === 'object'
+  )
 
   return (
     <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-6'>
