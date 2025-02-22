@@ -6,6 +6,7 @@ import { SkeletonHero } from '@/components/SkeletonHero'
 import { Banner } from '@/components/Banner'
 import { SkeletonCards } from '@/components/SkeletonCards'
 import { useAnimeZip } from '@/queries/useAniZip'
+import { CardGallery } from '@/components/CardGallery'
 
 export const Route = createFileRoute('/info/$infoId')({
   component: RouteComponent,
@@ -50,7 +51,7 @@ function RouteComponent() {
         zip={zip}
       />
       <Layout>
-        <SkeletonCards videos={40} />
+        <CardGallery list={zip} />
       </Layout>
     </>
   )
