@@ -1,4 +1,4 @@
-import { Details } from '@/types/jikan'
+import { Details, Jikan } from '@/types/jikan'
 import { fetch } from '@tauri-apps/plugin-http'
 
 export const getPopulars = async (limit: number) => {
@@ -6,7 +6,7 @@ export const getPopulars = async (limit: number) => {
     `https://api.jikan.moe/v4/top/anime?page=1&limit=${limit}&sfw=true`
   )
 
-  const data = await res.json()
+  const data: Jikan = await res.json()
 
   return data
 }
@@ -24,7 +24,7 @@ export const getTrending = async (limit: number) => {
     `https://api.jikan.moe/v4/top/anime?&filter=airing&limit=${limit}&sfw=true&type=tv`
   )
 
-  const data = await res.json()
+  const data: Jikan = await res.json()
 
   return data
 }
@@ -34,7 +34,7 @@ export const getUpcoming = async (limit: number) => {
     `https://api.jikan.moe/v4/top/anime?page=1&limit=${limit}&sfw=true&filter=upcoming`
   )
 
-  const data = await res.json()
+  const data: Jikan = await res.json()
 
   return data
 }
