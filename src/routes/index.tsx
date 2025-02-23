@@ -2,11 +2,16 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Layout } from '@/components/Layout'
 import { SkeletonPosterSlider } from '@/components/SkeletonPosterSlider'
 import { SkeletonHero } from '@/components/SkeletonHero'
-import { SkeletonCardSlider } from '@/components/SkeletonCardSlider'
 import { ErrorPage } from '@/Error'
 import { Hero } from '@/components/Hero'
 import { PosterSlider } from '@/components/PosterSlider'
-import { useHeroMovie, useTrending, useUpcoming } from '@/queries/useJikan'
+import {
+  useHeroMovie,
+  useTop,
+  useTrending,
+  useUpcoming,
+} from '@/queries/useJikan'
+import { Jikan } from '@/types/jikan'
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -19,9 +24,13 @@ export const Route = createFileRoute('/')({
 
 function Index() {
   const { data: hero, isLoading: loadingHero } = useHeroMovie(5)
-  const { data: upcoming, isLoading: loadingUpcoming } = useUpcoming(8)
-  const { data: trending, isLoading: loadingTrending } = useTrending(8)
-  // const { data: top, isLoading: loadingTop } = useTop(8)
+  const { data: upcoming, isLoading: loadingUpcoming } = useUpcoming(8, {
+    enabled: !!hero,
+  })
+  const { data: trending, isLoading: loadingTrending } = useTrending(8, {
+    enabled: !!hero,
+  })
+  const { data: top, isLoading: loadingTop } = useTop(8, { enabled: !!hero })
 
   if (loadingHero || !hero) {
     return (
@@ -32,7 +41,7 @@ function Index() {
           <SkeletonCardSlider /> */}
           <SkeletonPosterSlider />
           <SkeletonPosterSlider />
-          {/* <SkeletonPosterSlider /> */}
+          <SkeletonPosterSlider />
         </Layout>
       </>
     )
@@ -45,29 +54,29 @@ function Index() {
         {/* <SkeletonCardSlider />
         <SkeletonCardSlider /> */}
         {loadingUpcoming ? (
-          <SkeletonCardSlider />
+          <SkeletonPosterSlider />
         ) : (
           <PosterSlider
             title='Upcoming'
-            animes={upcoming}
+            animes={upcoming as Jikan}
           />
         )}
         {loadingTrending ? (
-          <SkeletonCardSlider />
+          <SkeletonPosterSlider />
         ) : (
           <PosterSlider
             title='Trending'
-            animes={trending}
+            animes={trending as Jikan}
           />
         )}
-        {/* {loadingTop ? (
-          <SkeletonCardSlider />
+        {loadingTop ? (
+          <SkeletonPosterSlider />
         ) : (
           <PosterSlider
             title='Top'
-            animes={top}
+            animes={top as Jikan}
           />
-        )} */}
+        )}
       </Layout>
     </>
   )
