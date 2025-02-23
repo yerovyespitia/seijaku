@@ -34,12 +34,12 @@ export const Banner = ({ anime, zip }: BannerProps) => {
       }}
     >
       <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-1/3 flex items-center justify-center'></div>
-      <div className='absolute top-0 left-0 right-0 bg-gradient-to-t from-transparent to-black h-16 flex items-center justify-center opacity-80'></div>
+      <div className='absolute top-0 left-0 right-0 bg-gradient-to-t from-transparent to-black/60 h-16 flex items-center justify-center opacity-80'></div>
       <button
         className='absolute top-3 left-8'
         onClick={() => router.history.back()}
       >
-        <ArrowLeft className='size-8 text-zinc-300 cursor-pointer' />
+        <ArrowLeft className='size-8 text-zinc-100 cursor-pointer' />
       </button>
       <div className='absolute bottom-8 left-8 right-8'>
         {logoImage ? (
