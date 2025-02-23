@@ -2,6 +2,9 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Layout } from '@/components/Layout'
 import { ErrorPage } from '@/Error'
 import { SkeletonPosterGallery } from '@/components/SkeletonPosterGallery'
+import { useTop, useTrending, useUpcoming } from '@/queries/useJikan'
+import { PosterGallery } from '@/components/PosterGallery'
+import { Jikan } from '@/types/jikan'
 
 export const Route = createFileRoute('/category/$categoryId')({
   component: RouteComponent,
@@ -10,13 +13,6 @@ export const Route = createFileRoute('/category/$categoryId')({
       categoryId: params.categoryId,
     }
   },
-  pendingComponent: () => (
-    <Layout>
-      <div className='py-6'>
-        <SkeletonPosterGallery videos={48} />
-      </div>
-    </Layout>
-  ),
   errorComponent: () => (
     <div className='px-6'>
       <ErrorPage />
@@ -27,6 +23,32 @@ export const Route = createFileRoute('/category/$categoryId')({
 function RouteComponent() {
   const { categoryId } = Route.useLoaderData()
 
+  const categoryHooks = {
+    top: useTop,
+    trending: useTrending,
+    upcoming: useUpcoming,
+  } as const
+
+  const categoryKey = categoryId.toLowerCase() as keyof typeof categoryHooks
+  const useCategoryQuery = categoryHooks[categoryKey]
+
+  const { data: animes, isLoading } = useCategoryQuery
+    ? useCategoryQuery(25)
+    : { data: null, isLoading: false }
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <section className='pt-6 flex justify-between items-center pb-4'>
+          <h1 className='text-2xl mb-0 font-semibold text-txtGray'>
+            {categoryId}
+          </h1>
+        </section>
+        <SkeletonPosterGallery videos={25} />
+      </Layout>
+    )
+  }
+
   return (
     <Layout>
       <section className='pt-6 flex justify-between items-center pb-4'>
@@ -35,10 +57,11 @@ function RouteComponent() {
         </h1>
       </section>
 
-      {categoryId === 'Continue Watching' ||
-        (categoryId === 'New Releases' && (
-          <SkeletonPosterGallery videos={48} />
-        ))}
+      {isLoading ? (
+        <SkeletonPosterGallery videos={25} />
+      ) : (
+        <PosterGallery animes={animes as Jikan} />
+      )}
     </Layout>
   )
 }
