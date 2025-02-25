@@ -1,9 +1,10 @@
 import { Details } from '@/types/jikan'
-import { ArrowLeft } from 'lucide-react'
+import { CircleX } from 'lucide-react'
 import { Badges } from './Badges'
 import { useRouter } from '@tanstack/react-router'
 import { truncatedDesc } from '@/utils'
 import { AniZip } from '@/types/zip'
+import { motion } from 'framer-motion'
 
 type BannerProps = {
   anime: Details
@@ -13,7 +14,7 @@ type BannerProps = {
 export const Banner = ({ anime, zip }: BannerProps) => {
   const router = useRouter()
   const categories = anime.data.genres.map((genre) => genre.name)
-  const description = truncatedDesc(anime)
+  const description = truncatedDesc(anime).split(' ')
 
   const logoImage = zip?.images?.find(
     (image: { coverType: string }) => image.coverType === 'Clearlogo'
@@ -39,7 +40,7 @@ export const Banner = ({ anime, zip }: BannerProps) => {
         className='absolute top-3 left-8'
         onClick={() => router.history.back()}
       >
-        <ArrowLeft className='size-8 text-zinc-100 cursor-pointer' />
+        <CircleX className='size-8 text-zinc-100 cursor-pointer' />
       </button>
       <div className='absolute bottom-8 left-8 right-8'>
         {logoImage ? (
@@ -53,7 +54,18 @@ export const Banner = ({ anime, zip }: BannerProps) => {
           </h2>
         )}
         <Badges categories={categories} />
-        <p className='text-txtGray/90 w-1/3 line-clamp-3'>{description}</p>
+        <p className='text-txtGray/90 w-1/3 line-clamp-3'>
+          {description.map((el, index) => (
+            <motion.span
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              {el}{' '}
+            </motion.span>
+          ))}
+        </p>
       </div>
     </section>
   )
