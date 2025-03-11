@@ -6,6 +6,9 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import { Bell, Settings, User, Users } from 'lucide-react'
+import { platform } from '@tauri-apps/plugin-os'
+
+const currentPlatform = platform()
 
 const tabs = [
   {
@@ -41,7 +44,9 @@ export const Route = createRootRoute({
               </Link>
             ))}
           </div>
-          <div className='absolute right-6'>
+          <div
+            className={`absolute ${currentPlatform === 'windows' ? 'left-6' : 'right-6'}`}
+          >
             <div className='flex items-center space-x-4 justify-end'>
               <Link
                 to='/'
