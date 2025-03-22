@@ -34,12 +34,16 @@ function RouteComponent() {
 
   if (loadingDetails || !details || loadingZip) {
     return (
-      <>
+      <motion.div
+        initial={{ y: 0, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
         <SkeletonHero />
         <Layout>
           <SkeletonCards />
         </Layout>
-      </>
+      </motion.div>
     )
   }
 
