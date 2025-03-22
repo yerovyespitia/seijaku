@@ -1,6 +1,5 @@
 import { Details } from '@/types/jikan'
 import { AniZip } from '@/types/zip'
-import { truncatedDesc } from '@/utils'
 import { useRouter } from '@tanstack/react-router'
 import { ChevronLeft } from 'lucide-react'
 import { Badges } from './Badges'
@@ -13,11 +12,10 @@ type BannerProps = {
 export const Banner = ({ anime, zip }: BannerProps) => {
   const router = useRouter()
   const categories = anime.data.genres.map((genre) => genre.name)
-  const description = truncatedDesc(anime)
 
   const logoImage = zip?.images?.find(
     (image: { coverType: string }) => image.coverType === 'Clearlogo'
-  ) 
+  )
 
   const fanartImage = zip?.images?.find(
     (image: { coverType: string }) => image.coverType === 'Fanart'
@@ -54,7 +52,9 @@ export const Banner = ({ anime, zip }: BannerProps) => {
           </h2>
         )}
         <Badges categories={categories} />
-        <p className='text-txtGray/90 w-1/3 line-clamp-3'>{description}</p>
+        <p className='text-txtGray/90 w-1/3 line-clamp-3'>
+          {anime.data.synopsis}
+        </p>
       </div>
     </section>
   )
