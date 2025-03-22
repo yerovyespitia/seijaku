@@ -8,6 +8,7 @@ import { SkeletonCards } from '@/components/SkeletonCards'
 import { useAnimeZip } from '@/queries/useAniZip'
 import { CardGallery } from '@/components/CardGallery'
 import { AniZip } from '@/types/zip'
+import { motion } from 'framer-motion'
 
 export const Route = createFileRoute('/info/$infoId')({
   component: RouteComponent,
@@ -46,7 +47,11 @@ function RouteComponent() {
   console.log('zip', zip)
 
   return (
-    <>
+    <motion.div
+      initial={{ y: 0, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+    >
       <Banner
         anime={details}
         zip={zip as AniZip}
@@ -54,6 +59,6 @@ function RouteComponent() {
       <Layout>
         <CardGallery list={zip as AniZip} />
       </Layout>
-    </>
+    </motion.div>
   )
 }
