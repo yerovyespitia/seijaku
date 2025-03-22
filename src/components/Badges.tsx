@@ -8,7 +8,7 @@ export const Badges = ({ categories }: BadgeProps) => {
       {categories.map((category) => (
         <li
           key={category}
-          className='border border-txtGray rounded-md w-fit px-2 py-0.5 text-xs mb-3'
+          className='border border-txtGray rounded-full w-fit px-2 py-0.5 text-xs mb-3'
         >
           {category}
         </li>
