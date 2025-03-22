@@ -33,7 +33,7 @@ export const Hero = ({ animes }: HeroProps) => {
     >
       <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-1/3 flex items-center justify-center'></div>
       <div className='absolute bottom-8 left-8 right-8'>
-        <h2 className='text-4xl font-bold text-zinc-300 mb-3'>
+        <h2 className='text-4xl font-bold text-zinc-200 mb-3'>
           {currentAnime.title_english}
         </h2>
         <Badges categories={categories} />
