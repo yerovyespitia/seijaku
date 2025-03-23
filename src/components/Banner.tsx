@@ -23,7 +23,7 @@ export const Banner = ({ anime, zip }: BannerProps) => {
 
   return (
     <section
-      className='relative aspect-video bg-no-repeat h-full bg-cover bg-center'
+      className='relative aspect-video bg-no-repeat h-full bg-cover bg-center brightness-90'
       style={{
         backgroundImage: `url(${
           fanartImage?.url ||
