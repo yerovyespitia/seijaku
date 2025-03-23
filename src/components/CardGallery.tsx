@@ -30,7 +30,7 @@ export const CardGallery = ({ list }: CardGalleryProps) => {
               <div className='rounded-lg w-full aspect-[309/231] bg-zinc-800 flex flex-col items-center justify-center' />
             )}
             <div className='absolute bottom-0 rounded-lg left-0 right-0 bg-gradient-to-t from-black to-transparent h-1/2 flex items-center justify-center'></div>
-            <article className='absolute z-20 bottom-2 left-2'>
+            <article className='absolute z-20 bottom-2 px-2'>
               <p className='text-zinc-300 text-2xl font-semibold'>
                 {episode.episode}
               </p>
