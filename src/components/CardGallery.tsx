@@ -22,7 +22,7 @@ export const CardGallery = ({ list }: CardGalleryProps) => {
           >
             {episode.image ? (
               <img
-                className='rounded-lg w-full aspect-[309/231]'
+                className='rounded-lg w-full aspect-[309/231] brightness-75'
                 src={episode.image}
                 alt={`${episode.tvdbId}`}
               />
