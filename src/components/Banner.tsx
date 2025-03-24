@@ -1,7 +1,7 @@
 import { Details } from '@/types/jikan'
 import { AniZip } from '@/types/zip'
 import { useRouter } from '@tanstack/react-router'
-import { ChevronLeft } from 'lucide-react'
+import { X } from 'lucide-react'
 import { Badges } from './Badges'
 
 type BannerProps = {
@@ -22,24 +22,24 @@ export const Banner = ({ anime, zip }: BannerProps) => {
   )
 
   return (
-    <section
-      className='relative aspect-video bg-no-repeat h-full bg-cover bg-center brightness-90'
-      style={{
-        backgroundImage: `url(${
+    <section className='relative aspect-video h-full brightness-90'>
+      <img
+        src={
           fanartImage?.url ||
           anime.data.images.jpg.large_image_url ||
           anime.data.images.jpg.image_url
-        })`,
-      }}
-    >
-      <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-1/3 flex items-center justify-center'></div>
-      <div className='absolute top-0 left-0 right-0 bg-gradient-to-t from-transparent to-black/90 h-16 flex items-center justify-center opacity-90'></div>
+        }
+        alt={anime.data.title_english || anime.data.title}
+        className='absolute inset-0 object-cover w-full h-full'
+      />
+      <div className='absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent' />
       <button
-        className='absolute top-3 left-8'
+        className='absolute p-3 top-3 right-8 rounded-full bg-sd/40 backdrop-blur-sm border-none hover:bg-sd/70'
         onClick={() => router.history.back()}
       >
-        <ChevronLeft className='size-8 text-zinc-100 cursor-pointer' />
+        <X className='size-5 text-white cursor-pointer' />
       </button>
+
       <div className='absolute bottom-8 left-8 right-8'>
         {logoImage ? (
           <img
@@ -47,14 +47,14 @@ export const Banner = ({ anime, zip }: BannerProps) => {
             src={logoImage?.url}
           />
         ) : (
-          <h2 className='text-4xl font-bold text-zinc-300 mb-3'>
+          <h2 className='text-4xl font-bold text-white mb-3'>
             {anime.data.title_english || anime.data.title}
           </h2>
         )}
-        <Badges categories={categories} />
-        <p className='text-txtGray/90 w-1/3 line-clamp-3'>
+        <p className='text-white/80 w-1/3 line-clamp-3'>
           {anime.data.synopsis}
         </p>
+        <Badges categories={categories} />
       </div>
     </section>
   )
