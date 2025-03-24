@@ -25,21 +25,26 @@ export const Hero = ({ animes }: HeroProps) => {
   console.log('xxx', animes.data)
 
   return (
-    <section
-      className='relative aspect-video bg-no-repeat h-full bg-cover bg-center'
-      style={{
-        backgroundImage: `url(${currentAnime.images.jpg.large_image_url || currentAnime.images.jpg.image_url})`,
-      }}
-    >
-      <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-1/3 flex items-center justify-center'></div>
+    <section className='relative aspect-video h-full brightness-90'>
+      <img
+        src={
+          currentAnime.images.jpg.large_image_url ||
+          currentAnime.images.jpg.image_url
+        }
+        alt={currentAnime.title_english}
+        className='absolute inset-0 object-cover w-full h-full'
+      />
+
+      <div className='absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent' />
+
       <div className='absolute bottom-8 left-8 right-8'>
-        <h2 className='text-4xl font-bold text-zinc-200 mb-3'>
+        <h2 className='text-4xl font-bold text-white mb-3'>
           {currentAnime.title_english}
         </h2>
-        <Badges categories={categories} />
-        <p className='text-txtGray/90 w-1/3 line-clamp-2'>
+        <p className='text-white/80 w-1/3 line-clamp-2'>
           {currentAnime.synopsis}
         </p>
+        <Badges categories={categories} />
       </div>
       <button
         className='absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-all duration-300'
