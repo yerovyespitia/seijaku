@@ -25,9 +25,12 @@ export const Hero = ({ animes }: HeroProps) => {
   console.log('xxx', animes.data)
 
   return (
-    <section className='relative aspect-video h-full brightness-90'>
+    <section className='relative aspect-video h-full'>
       <img
         src={
+          currentAnime.trailer.images.maximum_image_url ||
+          currentAnime.trailer.images.large_image_url ||
+          currentAnime.trailer.images.medium_image_url ||
           currentAnime.images.jpg.large_image_url ||
           currentAnime.images.jpg.image_url
         }
@@ -47,14 +50,14 @@ export const Hero = ({ animes }: HeroProps) => {
         <Badges categories={categories} />
       </div>
       <button
-        className='absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-all duration-300'
+        className='absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-all duration-300 cursor-pointer'
         aria-label='Previous movie'
         onClick={goToPreviosMovie}
       >
         <ChevronLeft className='size-6' />
       </button>
       <button
-        className='absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-all duration-300'
+        className='absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-all duration-300 cursor-pointer'
         aria-label='Next movie'
         onClick={goToNextMovie}
       >
