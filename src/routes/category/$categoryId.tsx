@@ -5,6 +5,7 @@ import { SkeletonPosterGallery } from '@/components/SkeletonPosterGallery'
 import { useTop, useTrending, useUpcoming } from '@/queries/useJikan'
 import { PosterGallery } from '@/components/PosterGallery'
 import { Jikan } from '@/types/jikan'
+import { useEffect } from 'react'
 
 export const Route = createFileRoute('/category/$categoryId')({
   component: RouteComponent,
@@ -22,6 +23,10 @@ export const Route = createFileRoute('/category/$categoryId')({
 
 function RouteComponent() {
   const { categoryId } = Route.useLoaderData()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const categoryHooks = {
     top: useTop,

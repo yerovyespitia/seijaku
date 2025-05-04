@@ -9,6 +9,7 @@ import { useAnimeZip } from '@/queries/useAniZip'
 import { CardGallery } from '@/components/CardGallery'
 import { AniZip } from '@/types/zip'
 import { motion } from 'framer-motion'
+import { useEffect } from 'react'
 
 export const Route = createFileRoute('/info/$infoId')({
   component: RouteComponent,
@@ -27,6 +28,10 @@ export const Route = createFileRoute('/info/$infoId')({
 
 function RouteComponent() {
   const { infoId } = Route.useLoaderData()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   let numId = Number(infoId)
   const { data: zip, isLoading: loadingZip } = useAnimeZip(numId)

@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { ErrorPage } from '@/Error'
 import { Layout } from '@/components/Layout'
 import { SkeletonPosterGallery } from '@/components/SkeletonPosterGallery'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Searchbar } from '@/components/Searchbar'
 import { PosterGallery } from '@/components/PosterGallery'
 import { useFind } from '@/queries/useJikan'
@@ -25,6 +25,10 @@ export const Route = createFileRoute('/search')({
 })
 
 function RouteComponent() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const [selectedOption, setSelectedOption] = useState({
     genre: '',
     format: '',
