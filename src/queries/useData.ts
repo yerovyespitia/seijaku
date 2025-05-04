@@ -1,12 +1,13 @@
 import { invoke } from '@tauri-apps/api/core'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import {
+  getAniZip,
   getHero,
   getInfo,
   getPopulars,
   getTrending,
   getUpcoming,
-} from './jikanData'
+} from './getFuncs'
 import { Jikan } from '@/types/jikan'
 
 type AnimeFilters = {
@@ -108,6 +109,15 @@ export const useHeroMovie = (limit: number) => {
   return useQuery({
     queryKey: ['hero-anime', limit],
     queryFn: async () => getHero(limit),
+    staleTime: 1000 * 60 * 60,
+    retry: 2,
+  })
+}
+
+export const useAnimeZip = (id: number) => {
+  return useQuery({
+    queryKey: ['list-episodes', id],
+    queryFn: async () => getAniZip(id),
     staleTime: 1000 * 60 * 60,
     retry: 2,
   })
