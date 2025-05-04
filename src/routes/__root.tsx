@@ -1,28 +1,14 @@
-import {
-  createRootRoute,
-  Link,
-  Outlet,
-  ScrollRestoration,
-} from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { Bell, Settings, User, Users } from 'lucide-react'
 import { platform } from '@tauri-apps/plugin-os'
 
 const currentPlatform = platform()
 
 const tabs = [
-  {
-    href: '/',
-    label: 'Home',
-  },
-  {
-    href: '/search',
-    label: 'Search',
-  },
-  {
-    href: '/collections',
-    label: 'Collections',
-  },
+  { href: '/', label: 'Home' },
+  { href: '/search', label: 'Search' },
+  { href: '/collections', label: 'Collections' },
 ]
 
 export const Route = createRootRoute({
@@ -77,7 +63,6 @@ export const Route = createRootRoute({
         </div>
       </section>
       <Outlet />
-      <ScrollRestoration scrollBehavior='instant' />
       <TanStackRouterDevtools />
     </>
   ),
