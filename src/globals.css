@@ -1,22 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  body {
-    @apply bg-pm text-zinc-300 overflow-y-scroll;
-  }
-  ::-webkit-scrollbar {
-    @apply w-[10px];
-  }
+body {
+  background-color: #1B1E28;
+  color: #A6ACCD;
+  overflow-y: scroll;
+}
 
-  ::-webkit-scrollbar-track {
-    @apply bg-sd;
-  }
+body::-webkit-scrollbar {
+  width: 10px;
+}
 
-  ::-webkit-scrollbar-thumb {
-    @apply bg-[#404452];
-  }
+body::-webkit-scrollbar-track {
+  background-color: #292C35;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #404452;
+}
+
+@theme {
+  --color-pm: #1B1E28;
+  --color-sd: #292C35;
+  --color-txtGray: #A6ACCD;
 }
 
 select {
