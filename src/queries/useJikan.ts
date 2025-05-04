@@ -44,7 +44,10 @@ export const useFind = (
 export const useDetails = (id: number) => {
   return useQuery({
     queryKey: ['details-anime', id],
-    queryFn: async () => getInfo(id),
+    queryFn: async () => {
+      const data = await getInfo(id)
+      return data
+    },
     staleTime: 1000 * 60 * 60,
     retry: 2,
   })
@@ -56,7 +59,11 @@ export const useTop = (
 ) => {
   return useQuery({
     queryKey: ['top-anime', limit],
-    queryFn: async () => getPopulars(limit),
+    queryFn: async () => {
+      const data = await getPopulars(limit)
+      data.data = data.data.slice(0, 8)
+      return data
+    },
     staleTime: 1000 * 60 * 60,
     retry: 2,
     ...options,
@@ -69,7 +76,11 @@ export const useTrending = (
 ) => {
   return useQuery({
     queryKey: ['trending-anime', limit],
-    queryFn: async () => getTrending(limit),
+    queryFn: async () => {
+      const data = await getTrending(limit)
+      data.data = data.data.slice(0, 8)
+      return data
+    },
     staleTime: 1000 * 60 * 60,
     retry: 2,
     ...options,
@@ -82,7 +93,11 @@ export const useUpcoming = (
 ) => {
   return useQuery({
     queryKey: ['upcoming-anime', limit],
-    queryFn: async () => getUpcoming(limit),
+    queryFn: async () => {
+      const data = await getUpcoming(limit)
+      data.data = data.data.slice(0, 8)
+      return data
+    },
     staleTime: 1000 * 60 * 60,
     retry: 2,
     ...options,
