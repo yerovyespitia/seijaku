@@ -1,6 +1,16 @@
 import { Details, Jikan } from '@/types/jikan'
+import { AniZip } from '@/types/zip'
 
 const JIKAN_URL = 'https://api.jikan.moe/v4'
+const ANIZIP_URL = 'https://api.ani.zip'
+
+export const getAniZip = async (id: number) => {
+  const res = await fetch(`${ANIZIP_URL}/mappings?anilist_id=${id}`)
+
+  const data: AniZip = await res.json()
+
+  return data
+}
 
 export const getPopulars = async (limit: number) => {
   const res = await fetch(
