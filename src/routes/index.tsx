@@ -24,13 +24,13 @@ export const Route = createFileRoute('/')({
 
 function Index() {
   const { data: hero, isLoading: loadingHero } = useHeroMovie(5)
-  const { data: upcoming, isLoading: loadingUpcoming } = useUpcoming(8, {
+  const { data: upcoming, isLoading: loadingUpcoming } = useUpcoming(12, {
     enabled: !!hero,
   })
-  const { data: trending, isLoading: loadingTrending } = useTrending(8, {
+  const { data: trending, isLoading: loadingTrending } = useTrending(12, {
     enabled: !!hero,
   })
-  const { data: top, isLoading: loadingTop } = useTop(8, { enabled: !!hero })
+  const { data: top, isLoading: loadingTop } = useTop(12, { enabled: !!hero })
 
   if (loadingHero || !hero) {
     return (
@@ -46,6 +46,8 @@ function Index() {
       </>
     )
   }
+
+  console.log('xxx', hero)
 
   return (
     <>
