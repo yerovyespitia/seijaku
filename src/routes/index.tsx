@@ -10,7 +10,7 @@ import {
   useTop,
   useTrending,
   useUpcoming,
-} from '@/queries/useJikan'
+} from '@/queries/useData'
 import { Jikan } from '@/types/jikan'
 
 export const Route = createFileRoute('/')({
