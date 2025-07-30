@@ -1,7 +1,8 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import { Bell, Settings, User, Users } from 'lucide-react'
+import { Settings, User, Users } from 'lucide-react'
 import { platform } from '@tauri-apps/plugin-os'
+import { NotificationsDropdown } from '@/components/NotificationsDropdown'
 
 const currentPlatform = platform()
 
@@ -34,12 +35,8 @@ export const Route = createRootRoute({
             className={`absolute ${currentPlatform === 'windows' ? 'left-6' : 'right-6'}`}
           >
             <div className='flex items-center space-x-4 justify-end'>
-              <Link
-                to='/'
-                title='Notifications'
-              >
-                <Bell className='size-4 text-txtGray hover:text-white cursor-pointer' />
-              </Link>
+              <NotificationsDropdown />
+
               <Link
                 to='/'
                 title='Watch together'
