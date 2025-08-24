@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Bell } from 'lucide-react'
 
-type NotificationsDropdownProps = {
+type TypeNotifications = {
   className?: string
 }
 
-export const NotificationsDropdown = ({
+export const Notifications = ({
   className = '',
-}: NotificationsDropdownProps) => {
+}: TypeNotifications) => {
   const [showNotifications, setShowNotifications] = useState(false)
 
   return (

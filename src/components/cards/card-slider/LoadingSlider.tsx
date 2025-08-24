@@ -1,10 +1,10 @@
-import { SkeletonCard } from './SkeletonCard'
+import { Card as LoadingCard } from '@/components/cards/card-slider/LoadingCard'
 
 type CardSliderProps = {
   videos?: number
 }
 
-export const SkeletonCardSlider = ({ videos = 4 }: CardSliderProps) => {
+export const Loading = ({ videos = 4 }: CardSliderProps) => {
   return (
     <div className='pt-6'>
       <section className='flex justify-between items-center pb-4'>
@@ -13,7 +13,7 @@ export const SkeletonCardSlider = ({ videos = 4 }: CardSliderProps) => {
       </section>
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
         {[...Array(videos)].map((_, i) => (
-          <SkeletonCard key={i} />
+          <LoadingCard key={i} />
         ))}
       </div>
     </div>

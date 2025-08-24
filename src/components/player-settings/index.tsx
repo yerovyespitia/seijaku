@@ -1,5 +1,5 @@
-import { CardSettings } from './CardSettings'
-import { Layout } from './Layout'
+import { CardSettings } from '@/components/cards/card-settings'
+import { Layout } from '@/components/layouts/main'
 
 export const PlayerSettings = () => {
   return (

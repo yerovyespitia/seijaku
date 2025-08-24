@@ -1,10 +1,10 @@
-import { invoke } from '@tauri-apps/api/core'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import {
   getAniZip,
   getHero,
   getInfo,
   getPopulars,
+  getSearching,
   getTrending,
   getUpcoming,
 } from './getFuncs'
@@ -20,7 +20,7 @@ type AnimeFilters = {
 export const useFind = (
   search: string,
   limit: number = 25,
-  filters: AnimeFilters
+  filters: AnimeFilters,
 ) => {
   return useQuery({
     queryKey: ['search-anime', search, limit, filters],
@@ -34,7 +34,14 @@ export const useFind = (
         ...(filters.year && { year: filters.year }),
       }
 
-      const data = await invoke('search_anime', queryParams)
+      const data = await getSearching({
+        q: queryParams.search,
+        limit: queryParams.limit,
+        genre: queryParams.genre,
+        status: queryParams.status,
+        year: queryParams.year,
+        format: queryParams.format,
+      })
       return data
     },
     staleTime: 1000 * 60 * 60,
@@ -56,7 +63,7 @@ export const useDetails = (id: number) => {
 
 export const useTop = (
   limit: number,
-  options?: Partial<UseQueryOptions<Jikan>>
+  options?: Partial<UseQueryOptions<Jikan>>,
 ) => {
   return useQuery({
     queryKey: ['top-anime', limit],
@@ -73,7 +80,7 @@ export const useTop = (
 
 export const useTrending = (
   limit: number,
-  options?: Partial<UseQueryOptions<Jikan>>
+  options?: Partial<UseQueryOptions<Jikan>>,
 ) => {
   return useQuery({
     queryKey: ['trending-anime', limit],
@@ -90,7 +97,7 @@ export const useTrending = (
 
 export const useUpcoming = (
   limit: number,
-  options?: Partial<UseQueryOptions<Jikan>>
+  options?: Partial<UseQueryOptions<Jikan>>,
 ) => {
   return useQuery({
     queryKey: ['upcoming-anime', limit],

@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { ErrorPage } from '@/Error'
-import { Layout } from '@/components/Layout'
-import { SkeletonPosterGallery } from '@/components/SkeletonPosterGallery'
+import { NotFound } from '@/errors/not-found'
+import { Layout } from '@/components/layouts/main'
+import { Loading as PGLoading } from '@/components/poster-gallery/Loading'
 import { useEffect, useState } from 'react'
-import { Searchbar } from '@/components/Searchbar'
-import { PosterGallery } from '@/components/PosterGallery'
+import { Searchbar } from '@/components/searchbar'
+import { PosterGallery } from '@/components/poster-gallery'
 import { useFind } from '@/queries/useData'
 import { Jikan } from '@/types/jikan'
 
@@ -13,13 +13,13 @@ export const Route = createFileRoute('/search')({
   pendingComponent: () => (
     <Layout>
       <div className='py-6'>
-        <SkeletonPosterGallery videos={48} />
+        <PGLoading videos={48} />
       </div>
     </Layout>
   ),
   errorComponent: () => (
     <div className='px-6'>
-      <ErrorPage />
+      <NotFound />
     </div>
   ),
 })
@@ -48,7 +48,7 @@ function RouteComponent() {
         setSelectedOption={setSelectedOption}
       />
       {isFetching ? (
-        <SkeletonPosterGallery videos={32} />
+        <PGLoading videos={32} />
       ) : (
         <PosterGallery animes={data as Jikan} />
       )}

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Badges } from './Badges'
+import { Badges } from '@/components/badges'
 import { Jikan } from '@/types/jikan'
 
 type HeroProps = {
@@ -18,7 +18,7 @@ export const Hero = ({ animes }: HeroProps) => {
 
   const goToPreviosMovie = () => {
     setCurrentMovie(
-      (currentMovie - 1 + animes.data.length) % animes.data.length
+      (currentMovie - 1 + animes.data.length) % animes.data.length,
     )
   }
 

@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Layout } from '@/components/Layout'
-import { ErrorPage } from '@/Error'
-import { SkeletonPosterGallery } from '@/components/SkeletonPosterGallery'
+import { Layout } from '@/components/layouts/main'
+import { NotFound } from '@/errors/not-found'
+import { Loading as PGLoading } from '@/components/poster-gallery/Loading'
 import { useTop, useTrending, useUpcoming } from '@/queries/useData'
-import { PosterGallery } from '@/components/PosterGallery'
+import { PosterGallery } from '@/components/poster-gallery'
 import { Jikan } from '@/types/jikan'
 import { useEffect } from 'react'
 
@@ -16,7 +16,7 @@ export const Route = createFileRoute('/category/$categoryId')({
   },
   errorComponent: () => (
     <div className='px-6'>
-      <ErrorPage />
+      <NotFound />
     </div>
   ),
 })
@@ -37,22 +37,9 @@ function RouteComponent() {
   const categoryKey = categoryId.toLowerCase() as keyof typeof categoryHooks
   const useCategoryQuery = categoryHooks[categoryKey]
 
-  const { data: animes, isLoading } = useCategoryQuery
+  const { data: animes } = useCategoryQuery
     ? useCategoryQuery(25)
-    : { data: null, isLoading: false }
-
-  if (isLoading) {
-    return (
-      <Layout>
-        <section className='pt-6 flex justify-between items-center pb-4'>
-          <h1 className='text-2xl mb-0 font-semibold text-txtGray'>
-            {categoryId}
-          </h1>
-        </section>
-        <SkeletonPosterGallery videos={25} />
-      </Layout>
-    )
-  }
+    : { data: null }
 
   return (
     <Layout>
@@ -62,10 +49,10 @@ function RouteComponent() {
         </h1>
       </section>
 
-      {isLoading ? (
-        <SkeletonPosterGallery videos={25} />
-      ) : (
+      {animes ? (
         <PosterGallery animes={animes as Jikan} />
+      ) : (
+        <PGLoading videos={25} />
       )}
     </Layout>
   )

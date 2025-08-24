@@ -14,7 +14,7 @@ export const getAniZip = async (id: number) => {
 
 export const getPopulars = async (limit: number) => {
   const res = await fetch(
-    `${JIKAN_URL}/top/anime?page=1&limit=${limit}&sfw=true`
+    `${JIKAN_URL}/top/anime?page=1&limit=${limit}&sfw=true`,
   )
 
   const data: Jikan = await res.json()
@@ -41,7 +41,7 @@ export const getInfo = async (id: number) => {
 
 export const getTrending = async (limit: number) => {
   const res = await fetch(
-    `${JIKAN_URL}/top/anime?&filter=airing&limit=${limit}&sfw=true&type=tv`
+    `${JIKAN_URL}/top/anime?&filter=airing&limit=${limit}&sfw=true&type=tv`,
   )
   const data: Jikan = await res.json()
 
@@ -59,7 +59,7 @@ export const getTrending = async (limit: number) => {
 
 export const getUpcoming = async (limit: number) => {
   const res = await fetch(
-    `${JIKAN_URL}/top/anime?page=1&limit=${limit}&sfw=true&filter=upcoming`
+    `${JIKAN_URL}/top/anime?page=1&limit=${limit}&sfw=true&filter=upcoming`,
   )
 
   const data: Jikan = await res.json()
@@ -78,7 +78,7 @@ export const getUpcoming = async (limit: number) => {
 
 export const getHero = async (limit: number) => {
   const res = await fetch(
-    `${JIKAN_URL}/top/anime?page=1&limit=${limit}&sfw=true&type=movie&filter=favorite`
+    `${JIKAN_URL}/top/anime?page=1&limit=${limit}&sfw=true&type=movie&filter=favorite`,
   )
 
   const data: Jikan = await res.json()
@@ -95,24 +95,42 @@ export const getHero = async (limit: number) => {
   return data
 }
 
-export const getSearching = async (
-  q: string,
-  limit: number,
-  status: string,
-  year: string,
-  type: string
-) => {
-  const res = await fetch(
-    `${JIKAN_URL}/anime?q=${q}&limit=${limit}&sfw=true&status=${status}&start_date=${year}-01-01&type=${type}`
-  )
+type SearchParams = {
+  q: string
+  limit: number
+  genre?: string
+  status?: string
+  year?: string
+  format?: string
+}
+
+export const getSearching = async ({
+  q,
+  limit,
+  genre,
+  status,
+  year,
+  format,
+}: SearchParams) => {
+  const url = new URL(`${JIKAN_URL}/anime`)
+  url.searchParams.set('q', q)
+  url.searchParams.set('limit', String(limit))
+  url.searchParams.set('sfw', 'true')
+  if (genre) url.searchParams.set('genres', genre)
+  if (status) url.searchParams.set('status', status)
+  if (year) url.searchParams.set('start_date', `${year}-01-01`)
+  if (format) url.searchParams.set('type', format)
+
+  const res = await fetch(url.toString())
+  if (!res.ok) {
+    throw new Error(`Error al llamar a la API: ${res.status} ${res.statusText}`)
+  }
 
   const data: Jikan = await res.json()
 
-  const seenIds = new Set()
+  const seenIds = new Set<number>()
   data.data = data.data.filter((anime) => {
-    if (seenIds.has(anime.mal_id)) {
-      return false
-    }
+    if (seenIds.has(anime.mal_id)) return false
     seenIds.add(anime.mal_id)
     return true
   })

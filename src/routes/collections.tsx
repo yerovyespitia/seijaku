@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Plus } from 'lucide-react'
-import { Group } from '../components/Group'
-import { Layout } from '../components/Layout'
+import { Group } from '@/components/group'
+import { Layout } from '@/components/layouts/main'
 import { Button } from '../components/ui/Button'
 import { useEffect } from 'react'
 
@@ -33,11 +33,7 @@ function RouteComponent() {
 
       <div className='flex flex-col gap-4'>
         {collections.map(({ id, name, items }) => (
-          <Group
-            name={name}
-            items={items}
-            key={id}
-          />
+          <Group name={name} items={items} key={id} />
         ))}
       </div>
     </Layout>

@@ -1,10 +1,10 @@
-import { SkeletonPoster } from './SkeletonPoster'
+import { Loading as Poster } from '@/components/poster/Loading'
 
 type PosterSliderProps = {
   videos?: number
 }
 
-export const SkeletonPosterSlider = ({ videos = 8 }: PosterSliderProps) => {
+export const Loading = ({ videos = 8 }: PosterSliderProps) => {
   return (
     <div className='pt-6'>
       <section className='flex justify-between items-center pb-4'>
@@ -13,7 +13,7 @@ export const SkeletonPosterSlider = ({ videos = 8 }: PosterSliderProps) => {
       </section>
       <div className='grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4'>
         {[...Array(videos)].map((_, i) => (
-          <SkeletonPoster key={i} />
+          <Poster key={i} />
         ))}
       </div>
     </div>

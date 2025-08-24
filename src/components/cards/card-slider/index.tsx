@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { Button } from './ui/Button'
+import { Button } from '@/components/ui/Button'
 
 type CardSliderProps = {
   title: string
@@ -11,10 +11,7 @@ export const CardSlider = ({ title, videos = 4 }: CardSliderProps) => {
     <div className='pt-6'>
       <section className='flex justify-between items-center pb-4'>
         <h1 className='text-2xl font-bold text-txtGray mb-0'>{title}</h1>
-        <Link
-          to='/category/$categoryId'
-          params={{ categoryId: title }}
-        >
+        <Link to='/category/$categoryId' params={{ categoryId: title }}>
           <Button>View more</Button>
         </Link>
       </section>

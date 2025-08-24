@@ -1,11 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { ErrorPage } from '@/Error'
-import { Layout } from '@/components/Layout'
+import { NotFound } from '@/errors/not-found'
+import { Layout } from '@/components/layouts/main'
 import { useAnimeZip, useDetails } from '@/queries/useData'
-import { SkeletonHero } from '@/components/SkeletonHero'
-import { Banner } from '@/components/Banner'
-import { SkeletonCards } from '@/components/SkeletonCards'
-import { CardGallery } from '@/components/CardGallery'
+import { Loading as HLoading } from '@/components/hero/Loading'
+import { Banner } from '@/components/hero/banner'
+import { Loading as LoadingCards } from '@/components/cards/card-slider/LoadingCards'
+import { CardGallery } from '@/components/cards/card-gallery'
 import { AniZip } from '@/types/zip'
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
@@ -17,10 +17,10 @@ export const Route = createFileRoute('/info/$infoId')({
       infoId: params.infoId,
     }
   },
-  pendingComponent: () => <SkeletonHero />,
+  pendingComponent: () => <HLoading />,
   errorComponent: () => (
     <div className='px-6'>
-      <ErrorPage />
+      <NotFound />
     </div>
   ),
 })
@@ -43,9 +43,9 @@ function RouteComponent() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <SkeletonHero />
+        <HLoading />
         <Layout>
-          <SkeletonCards />
+          <LoadingCards />
         </Layout>
       </motion.div>
     )
@@ -60,10 +60,7 @@ function RouteComponent() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <Banner
-        anime={details}
-        zip={zip as AniZip}
-      />
+      <Banner anime={details} zip={zip as AniZip} />
       <Layout>
         <CardGallery list={zip as AniZip} />
       </Layout>

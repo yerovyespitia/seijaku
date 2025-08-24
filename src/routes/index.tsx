@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Layout } from '@/components/Layout'
-import { SkeletonPosterSlider } from '@/components/SkeletonPosterSlider'
-import { SkeletonHero } from '@/components/SkeletonHero'
-import { ErrorPage } from '@/Error'
-import { Hero } from '@/components/Hero'
-import { PosterSlider } from '@/components/PosterSlider'
+import { Layout } from '@/components/layouts/main'
+import { Loading as PSLoading } from '@/components/poster-slider/Loading'
+import { Loading as HLoading } from '@/components/hero/Loading'
+import { NotFound } from '@/errors/not-found'
+import { Hero } from '@/components/hero'
+import { PosterSlider } from '@/components/poster-slider'
 import {
   useHeroMovie,
   useTop,
@@ -17,67 +17,43 @@ export const Route = createFileRoute('/')({
   component: Index,
   errorComponent: () => (
     <div className='px-6'>
-      <ErrorPage />
+      <NotFound />
     </div>
   ),
 })
 
 function Index() {
-  const { data: hero, isLoading: loadingHero } = useHeroMovie(5)
-  const { data: upcoming, isLoading: loadingUpcoming } = useUpcoming(12, {
+  const { data: hero } = useHeroMovie(5)
+  const { data: upcoming } = useUpcoming(12, {
     enabled: !!hero,
   })
-  const { data: trending, isLoading: loadingTrending } = useTrending(12, {
+  const { data: trending } = useTrending(12, {
     enabled: !!hero,
   })
-  const { data: top, isLoading: loadingTop } = useTop(12, { enabled: !!hero })
-
-  if (loadingHero || !hero) {
-    return (
-      <>
-        <SkeletonHero />
-        <Layout>
-          {/* <SkeletonCardSlider />
-          <SkeletonCardSlider /> */}
-          <SkeletonPosterSlider />
-          <SkeletonPosterSlider />
-          <SkeletonPosterSlider />
-        </Layout>
-      </>
-    )
-  }
+  const { data: top } = useTop(12, {
+    enabled: !!hero,
+  })
 
   console.log('xxx', hero)
 
   return (
     <>
-      <Hero animes={hero} />
+      {hero ? <Hero animes={hero} /> : <HLoading />}
       <Layout>
-        {/* <SkeletonCardSlider />
-        <SkeletonCardSlider /> */}
-        {loadingUpcoming ? (
-          <SkeletonPosterSlider />
+        {upcoming ? (
+          <PosterSlider title='Upcoming' animes={upcoming as Jikan} />
         ) : (
-          <PosterSlider
-            title='Upcoming'
-            animes={upcoming as Jikan}
-          />
+          <PSLoading />
         )}
-        {loadingTrending ? (
-          <SkeletonPosterSlider />
+        {trending ? (
+          <PosterSlider title='Trending' animes={trending as Jikan} />
         ) : (
-          <PosterSlider
-            title='Trending'
-            animes={trending as Jikan}
-          />
+          <PSLoading />
         )}
-        {loadingTop ? (
-          <SkeletonPosterSlider />
+        {top ? (
+          <PosterSlider title='Top' animes={top as Jikan} />
         ) : (
-          <PosterSlider
-            title='Top'
-            animes={top as Jikan}
-          />
+          <PSLoading />
         )}
       </Layout>
     </>

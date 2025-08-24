@@ -2,7 +2,7 @@ import { Details } from '@/types/jikan'
 import { AniZip } from '@/types/zip'
 import { useRouter } from '@tanstack/react-router'
 import { X } from 'lucide-react'
-import { Badges } from './Badges'
+import { Badges } from '@/components/badges'
 
 type BannerProps = {
   anime: Details
@@ -14,11 +14,11 @@ export const Banner = ({ anime, zip }: BannerProps) => {
   const categories = anime.data.genres.map((genre) => genre.name)
 
   const logoImage = zip?.images?.find(
-    (image: { coverType: string }) => image.coverType === 'Clearlogo'
+    (image: { coverType: string }) => image.coverType === 'Clearlogo',
   )
 
   const fanartImage = zip?.images?.find(
-    (image: { coverType: string }) => image.coverType === 'Fanart'
+    (image: { coverType: string }) => image.coverType === 'Fanart',
   )
 
   return (
@@ -42,10 +42,7 @@ export const Banner = ({ anime, zip }: BannerProps) => {
 
       <div className='absolute bottom-8 left-8 right-8'>
         {logoImage ? (
-          <img
-            className='object-cover w-[300px] pb-4'
-            src={logoImage?.url}
-          />
+          <img className='object-cover w-[300px] pb-4' src={logoImage?.url} />
         ) : (
           <h2 className='text-4xl font-bold text-white mb-3'>
             {anime.data.title_english || anime.data.title}

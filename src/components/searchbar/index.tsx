@@ -59,11 +59,7 @@ export const Searchbar = ({
         onChange={handleSelectChange}
         className='h-12 bg-sd w-fit text-txtGray rounded-lg px-4 outline-none cursor-pointer hover:bg-sd/70'
       >
-        <option
-          value=''
-          disabled
-          defaultValue={selectedOption.genre}
-        >
+        <option value='' disabled defaultValue={selectedOption.genre}>
           Choose a genre
         </option>
         <option value='action'>Action</option>
@@ -79,11 +75,7 @@ export const Searchbar = ({
         onChange={handleSelectChange}
         className='h-12 bg-sd w-fit text-txtGray rounded-lg px-4 outline-none cursor-pointer hover:bg-sd/70'
       >
-        <option
-          value=''
-          disabled
-          defaultValue={selectedOption.format}
-        >
+        <option value='' disabled defaultValue={selectedOption.format}>
           Choose a format
         </option>
         <option value='tv'>TV</option>
@@ -103,11 +95,7 @@ export const Searchbar = ({
         onChange={handleSelectChange}
         className='h-12 bg-sd w-fit text-txtGray rounded-lg px-4 outline-none cursor-pointer hover:bg-sd/70'
       >
-        <option
-          value=''
-          disabled
-          defaultValue={selectedOption.status}
-        >
+        <option value='' disabled defaultValue={selectedOption.status}>
           Choose a status
         </option>
         <option value='airing'>Airing</option>
@@ -121,25 +109,18 @@ export const Searchbar = ({
         onChange={handleSelectChange}
         className='h-12 bg-sd w-fit text-txtGray rounded-lg px-4 outline-none cursor-pointer hover:bg-sd/70'
       >
-        <option
-          value=''
-          disabled
-          defaultValue={selectedOption.year}
-        >
+        <option value='' disabled defaultValue={selectedOption.year}>
           Choose a year
         </option>
         {Array.from({ length: 40 }).map((_, year) => (
-          <option
-            key={year}
-            value={currentYear - year}
-          >
+          <option key={year} value={currentYear - year}>
             {currentYear - year}
           </option>
         ))}
       </select>
       <button
         onClick={resetSelects}
-        className='h-12 bg-sd rounded-lg px-4 text-txtGray hover:bg-sd/70'
+        className='h-12 bg-sd rounded-lg px-4 text-txtGray hover:bg-sd/70 cursor-pointer'
       >
         <Trash size={18} />
       </button>
