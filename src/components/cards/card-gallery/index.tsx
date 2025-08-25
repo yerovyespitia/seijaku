@@ -1,5 +1,4 @@
 import { AniZip, Episode } from '@/types/zip'
-import { CirclePlay, Play } from 'lucide-react'
 
 type CardGalleryProps = {
   list: AniZip
