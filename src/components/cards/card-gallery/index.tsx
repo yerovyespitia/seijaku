@@ -47,7 +47,7 @@ export const CardGallery = ({ list }: CardGalleryProps) => {
               <p className='text-zinc-300 text-2xl font-semibold'>
                 {episode.episode}
               </p>
-              <h3>{episode.title.en}</h3>
+              <h3 className='text-white'>{episode.title.en}</h3>
             </article>
           </div>
         ))}

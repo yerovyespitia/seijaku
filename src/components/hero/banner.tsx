@@ -34,7 +34,7 @@ export const Banner = ({ anime, zip }: BannerProps) => {
         alt={anime.data.title_english || anime.data.title}
         className='absolute inset-0 object-cover w-full h-full'
       />
-      <div className='absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent' />
+      <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent' />
       <motion.button
         whileTap={{ scale: 0.95 }}
         className='absolute p-3 top-3 right-8 rounded-full bg-sd/40 backdrop-blur-sm border-none hover:bg-sd/70 cursor-pointer'
@@ -75,9 +75,7 @@ export const Banner = ({ anime, zip }: BannerProps) => {
             <ListRestart className='size-5 text-black' />
           </motion.button>
         </section>
-        <p className='text-white/80 w-1/3 line-clamp-3'>
-          {anime.data.synopsis}
-        </p>
+        <p className='text-white w-1/3 line-clamp-3'>{anime.data.synopsis}</p>
         <Badges categories={categories} />
       </div>
     </section>
