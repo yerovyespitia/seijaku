@@ -26,7 +26,7 @@ export const CardGallery = ({ list }: CardGalleryProps) => {
             ) : (
               <div className='rounded-lg w-full aspect-[309/231] bg-zinc-800 flex flex-col items-center justify-center' />
             )}
-            <button className='p-3 rounded-full bg-sd/40 backdrop-blur-sm border-none absolute z-90 left-[40%] bottom-[40%] hidden group-hover:block transition-all duration-150 ease-linear cursor-pointer'>
+            <button className='p-3 rounded-full bg-sd/30 hover:bg-sd/60 backdrop-blur-sm border-none absolute z-90 left-[40%] bottom-[40%] hidden group-hover:block transition-all duration-150 ease-linear cursor-pointer'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='#BBBEC1'

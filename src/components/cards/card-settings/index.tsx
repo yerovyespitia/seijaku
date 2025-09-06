@@ -36,7 +36,7 @@ export const CardSettings = ({ title }: CardSettingsProps) => {
   return (
     <>
       <section className='pt-6 flex justify-between items-center mb-4'>
-        <h1 className='text-2xl mb-0 font-semibold text-txtGray'>{title}</h1>
+        <h1 className='text-2xl mb-0 font-semibold text-zinc-300'>{title}</h1>
       </section>
 
       <div className='flex flex-col gap-4'>
@@ -46,7 +46,9 @@ export const CardSettings = ({ title }: CardSettingsProps) => {
             key={id}
           >
             <div>
-              <h2 className='text-lg capitalize font-semibold'>{title}</h2>
+              <h2 className='text-lg capitalize font-semibold text-txtGray'>
+                {title}
+              </h2>
               <p className='text-sm text-txtGray/70 pt-2'>{description}</p>
             </div>
             <div>{renderComponent(component)}</div>
@@ -60,12 +62,7 @@ export const CardSettings = ({ title }: CardSettingsProps) => {
 const renderComponent = (componentType?: string) => {
   switch (componentType) {
     case 'Switch':
-      return (
-        <input
-          type='checkbox'
-          className='toggle-switch'
-        />
-      )
+      return <input type='checkbox' className='toggle-switch' />
     case 'Dropdown':
       return (
         <select className='dropdown'>
@@ -76,13 +73,7 @@ const renderComponent = (componentType?: string) => {
     case 'Button':
       return <button className='btn'>Click Me</button>
     case 'Input':
-      return (
-        <input
-          type='text'
-          className='input'
-          placeholder='Enter text'
-        />
-      )
+      return <input type='text' className='input' placeholder='Enter text' />
     default:
       return null
   }

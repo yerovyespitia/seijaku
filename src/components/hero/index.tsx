@@ -47,7 +47,7 @@ export const Hero = ({ animes }: HeroProps) => {
         <p className='text-white/80 w-1/3 line-clamp-2'>
           {currentAnime.synopsis}
         </p>
-        <Badges categories={categories} />
+        <Badges items={categories} />
       </div>
       <button
         className='absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-all duration-300 cursor-pointer'

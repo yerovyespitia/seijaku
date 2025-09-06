@@ -1,4 +1,4 @@
-import { Card as LoadingCard } from '@/components/cards/card-slider/LoadingCard'
+import { Card as LoadingCard } from '@/components/cards/card-slider/loading-card'
 
 type CardSliderProps = {
   videos?: number

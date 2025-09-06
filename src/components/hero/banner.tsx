@@ -1,5 +1,16 @@
 import { useRouter } from '@tanstack/react-router'
-import { HeartPlus, ListRestart, Trash2, X } from 'lucide-react'
+import {
+  HeartPlus,
+  ListRestart,
+  Trash2,
+  X,
+  TrendingUp,
+  Calendar,
+  CheckCheck,
+  List,
+  Trophy,
+  Hourglass,
+} from 'lucide-react'
 import { Details } from '@/types/jikan'
 import { AniZip } from '@/types/zip'
 import { Badges } from '@/components/badges'
@@ -22,6 +33,23 @@ export const Banner = ({ anime, zip }: BannerProps) => {
   const fanartImage = zip?.images?.find(
     (image: { coverType: string }) => image.coverType === 'Fanart',
   )
+
+  const details = [
+    {
+      text: `${anime.data.airing ? 'Airing' : 'Finished'}`,
+      icon: anime.data.airing ? Hourglass : CheckCheck,
+    },
+    zip.episodeCount
+      ? { text: `${zip.episodeCount} episodes`, icon: List }
+      : null,
+    anime.data.rank
+      ? { text: `${anime.data.rank} Ranked`, icon: TrendingUp }
+      : null,
+    anime.data.score
+      ? { text: `${anime.data.score.toPrecision(2)} Score`, icon: Trophy }
+      : null,
+    anime.data.year ? { text: `${anime.data.year}`, icon: Calendar } : null,
+  ].filter(Boolean)
 
   return (
     <section className='relative aspect-video h-full brightness-90'>
@@ -55,28 +83,42 @@ export const Banner = ({ anime, zip }: BannerProps) => {
           <PlayButton />
           <motion.button
             whileTap={{ scale: 0.95 }}
-            className='p-3 rounded-full bg-white backdrop-blur-sm border-none hover:bg-white/80 cursor-pointer'
+            className='p-3 rounded-full bg-white/20 backdrop-blur-sm border-none hover:bg-white/30 cursor-pointer'
             title='Add to a list'
           >
-            <HeartPlus className='size-5 text-black' />
+            <HeartPlus className='size-5 text-white' />
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.95 }}
-            className='p-3 rounded-full bg-white backdrop-blur-sm border-none hover:bg-white/80 cursor-pointer'
+            className='p-3 rounded-full bg-white/20 backdrop-blur-sm border-none hover:bg-white/30 cursor-pointer'
             title='Drop it'
           >
-            <Trash2 className='size-5 text-black' />
+            <Trash2 className='size-5 text-white' />
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.95 }}
-            className='p-3 rounded-full bg-white backdrop-blur-sm border-none hover:bg-white/80 cursor-pointer'
+            className='p-3 rounded-full bg-white/20 backdrop-blur-sm border-none hover:bg-white/30 cursor-pointer'
             title='Restart watch'
           >
-            <ListRestart className='size-5 text-black' />
+            <ListRestart className='size-5 text-white' />
           </motion.button>
         </section>
+        <section>
+          <div className='flex items-center gap-4 my-2 text-sm text-white font-semibold'>
+            {details.map((detail, index) => (
+              <div key={index} className='flex items-center gap-1'>
+                {detail && (
+                  <>
+                    <detail.icon className='size-4 text-white' />
+                    <p>{detail.text}</p>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
         <p className='text-white w-1/3 line-clamp-3'>{anime.data.synopsis}</p>
-        <Badges categories={categories} />
+        <Badges items={categories} />
       </div>
     </section>
   )

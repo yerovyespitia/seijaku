@@ -1,11 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { NotFound } from '@/errors/not-found'
+import { NotFound } from '@/components/errors/not-found'
 import { Layout } from '@/components/layouts/main'
 import { Loading as PGLoading } from '@/components/poster-gallery/Loading'
 import { useEffect, useState } from 'react'
 import { Searchbar } from '@/components/searchbar'
 import { PosterGallery } from '@/components/poster-gallery'
-import { useFind } from '@/queries/useData'
+import { useFind } from '@/queries/useQuery'
 import { Jikan } from '@/types/jikan'
 
 export const Route = createFileRoute('/search')({

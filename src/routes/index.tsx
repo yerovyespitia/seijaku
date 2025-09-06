@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Layout } from '@/components/layouts/main'
 import { Loading as PSLoading } from '@/components/poster-slider/Loading'
 import { Loading as HLoading } from '@/components/hero/Loading'
-import { NotFound } from '@/errors/not-found'
+import { NotFound } from '@/components/errors/not-found'
 import { Hero } from '@/components/hero'
 import { PosterSlider } from '@/components/poster-slider'
 import {
@@ -10,7 +10,7 @@ import {
   useTop,
   useTrending,
   useUpcoming,
-} from '@/queries/useData'
+} from '@/queries/useQuery'
 import { Jikan } from '@/types/jikan'
 
 export const Route = createFileRoute('/')({

@@ -47,7 +47,7 @@ export const Searchbar = ({
     <section className='py-6 flex items-center gap-4'>
       <input
         type='text'
-        className='rounded-lg outline-none px-4 bg-sd h-12 w-full text-txtGray'
+        className='rounded-full outline-none px-4 bg-sd h-12 w-full text-txtGray'
         placeholder='Search an anime...'
         value={search}
         onChange={handleSearchChange}
@@ -57,7 +57,7 @@ export const Searchbar = ({
         id='genre'
         value={selectedOption.genre}
         onChange={handleSelectChange}
-        className='h-12 bg-sd w-fit text-txtGray rounded-lg px-4 outline-none cursor-pointer hover:bg-sd/70'
+        className='h-12 bg-sd w-fit text-white/80 rounded-full px-5 outline-none cursor-pointer hover:bg-sd/70'
       >
         <option value='' disabled defaultValue={selectedOption.genre}>
           Choose a genre
@@ -73,7 +73,7 @@ export const Searchbar = ({
         id='format'
         value={selectedOption.format}
         onChange={handleSelectChange}
-        className='h-12 bg-sd w-fit text-txtGray rounded-lg px-4 outline-none cursor-pointer hover:bg-sd/70'
+        className='h-12 bg-sd w-fit text-white/80 rounded-full px-5 outline-none cursor-pointer hover:bg-sd/70'
       >
         <option value='' disabled defaultValue={selectedOption.format}>
           Choose a format
@@ -93,7 +93,7 @@ export const Searchbar = ({
         id='status'
         value={selectedOption.status}
         onChange={handleSelectChange}
-        className='h-12 bg-sd w-fit text-txtGray rounded-lg px-4 outline-none cursor-pointer hover:bg-sd/70'
+        className='h-12 bg-sd w-fit text-white/80 rounded-full px-5 outline-none cursor-pointer hover:bg-sd/70'
       >
         <option value='' disabled defaultValue={selectedOption.status}>
           Choose a status
@@ -107,7 +107,7 @@ export const Searchbar = ({
         id='year'
         value={selectedOption.year}
         onChange={handleSelectChange}
-        className='h-12 bg-sd w-fit text-txtGray rounded-lg px-4 outline-none cursor-pointer hover:bg-sd/70'
+        className='h-12 bg-sd w-fit text-white/80 rounded-full px-5 outline-none cursor-pointer hover:bg-sd/70'
       >
         <option value='' disabled defaultValue={selectedOption.year}>
           Choose a year
@@ -120,7 +120,7 @@ export const Searchbar = ({
       </select>
       <button
         onClick={resetSelects}
-        className='h-12 bg-sd rounded-lg px-4 text-txtGray hover:bg-sd/70 cursor-pointer'
+        className='h-12 bg-sd rounded-full px-4 text-white/80 hover:bg-sd/70 cursor-pointer'
       >
         <Trash size={18} />
       </button>

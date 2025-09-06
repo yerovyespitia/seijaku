@@ -7,7 +7,7 @@ import {
   getSearching,
   getTrending,
   getUpcoming,
-} from './getFuncs'
+} from './anime'
 import { Jikan } from '@/types/jikan'
 
 type AnimeFilters = {

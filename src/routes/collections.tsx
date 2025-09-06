@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Plus } from 'lucide-react'
 import { Group } from '@/components/group'
 import { Layout } from '@/components/layouts/main'
-import { Button } from '../components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { useEffect } from 'react'
 
 export const Route = createFileRoute('/collections')({
@@ -23,9 +23,7 @@ function RouteComponent() {
   return (
     <Layout>
       <section className='pt-6 flex justify-between items-center pb-4'>
-        <h1 className='text-2xl mb-0 font-semibold text-txtGray'>
-          Collections
-        </h1>
+        <h1 className='text-2xl mb-0 font-semibold text-white'>Collections</h1>
         <Button>
           <Plus size={16} /> Add Collection
         </Button>

@@ -3,6 +3,8 @@ export type AniZip = {
   episodes: Episodes
   images: Image[]
   mappings: Mappings
+  episodeCount: number
+  specialCount: number
 }
 
 type Titles = Record<string, string>

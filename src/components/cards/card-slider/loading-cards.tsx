@@ -1,4 +1,4 @@
-import { Card as LoadingCard } from './LoadingCard'
+import { Card as LoadingCard } from './loading-card'
 
 type CardsProps = {
   videos?: number
