@@ -13,7 +13,7 @@ export const PosterSlider = ({ title, animes }: PosterSliderProps) => {
       <section className='flex justify-between items-center pb-4'>
         <h1 className='text-2xl font-bold text-white mb-0'>{title}</h1>
         <Link to='/category/$categoryId' params={{ categoryId: title }}>
-          <button className='btn-primary'>View more</button>
+          <button className='btn-primary animate-pressed'>View more</button>
         </Link>
       </section>
 

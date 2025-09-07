@@ -23,7 +23,7 @@ function RouteComponent() {
     <Layout>
       <section className='pt-6 flex justify-between items-center pb-4'>
         <h1 className='text-2xl mb-0 font-semibold text-white'>Collections</h1>
-        <button className='btn-primary flex items-center gap-2'>
+        <button className='btn-primary flex items-center gap-2 animate-pressed'>
           <Plus size={16} /> Add Collection
         </button>
       </section>

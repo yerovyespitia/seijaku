@@ -120,7 +120,7 @@ export const Searchbar = ({
       </select>
       <button
         onClick={resetSelects}
-        className='h-12 bg-sd rounded-full px-4 text-white/80 hover:bg-sd/70 cursor-pointer'
+        className='h-12 bg-sd rounded-full px-4 text-white/80 hover:bg-sd/70 cursor-pointer animate-pressed'
       >
         <Trash size={18} />
       </button>

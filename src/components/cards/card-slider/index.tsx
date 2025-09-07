@@ -11,7 +11,7 @@ export const CardSlider = ({ title, videos = 4 }: CardSliderProps) => {
       <section className='flex justify-between items-center pb-4'>
         <h1 className='text-2xl font-bold text-txtGray mb-0'>{title}</h1>
         <Link to='/category/$categoryId' params={{ categoryId: title }}>
-          <button className='btn-primary'>View more</button>
+          <button className='btn-primary animate-pressed'>View more</button>
         </Link>
       </section>
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
