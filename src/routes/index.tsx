@@ -11,7 +11,6 @@ import {
   useTrending,
   useUpcoming,
 } from '@/queries/useQuery'
-import { Jikan } from '@/types/jikan'
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -34,26 +33,24 @@ function Index() {
     enabled: !!hero,
   })
 
-  console.log('xxx', hero)
+  console.log('hero', hero)
+
+  const sections = [
+    { title: 'Upcoming', animes: upcoming },
+    { title: 'Trending', animes: trending },
+    { title: 'Top', animes: top },
+  ]
 
   return (
     <>
       {hero ? <Hero animes={hero} /> : <HLoading />}
       <Layout>
-        {upcoming ? (
-          <PosterSlider title='Upcoming' animes={upcoming as Jikan} />
-        ) : (
-          <PSLoading />
-        )}
-        {trending ? (
-          <PosterSlider title='Trending' animes={trending as Jikan} />
-        ) : (
-          <PSLoading />
-        )}
-        {top ? (
-          <PosterSlider title='Top' animes={top as Jikan} />
-        ) : (
-          <PSLoading />
+        {sections.map(({ title, animes }) =>
+          animes ? (
+            <PosterSlider key={title} title={title} animes={animes} />
+          ) : (
+            <PSLoading key={title} />
+          ),
         )}
       </Layout>
     </>
