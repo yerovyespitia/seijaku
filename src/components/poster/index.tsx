@@ -6,10 +6,7 @@ type PosterProps = { anime: Anime }
 
 export const Poster = ({ anime }: PosterProps) => {
   return (
-    <Link
-      to='/info/$infoId'
-      params={{ infoId: anime.mal_id.toString() }}
-    >
+    <Link to='/info/$infoId' params={{ infoId: anime.mal_id.toString() }}>
       <motion.section
         initial={{ opacity: 0, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
@@ -23,7 +20,7 @@ export const Poster = ({ anime }: PosterProps) => {
             src={anime.images.jpg.large_image_url}
             alt={anime.title_english || anime.title}
           />
-          <div className='absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300' />
+          <div className='absolute inset-0 bg-black/0 group-hover:bg-black/90 transition-bg duration-150' />
           <article className='hidden group-hover:flex justify-center items-center absolute inset-0 font-semibold text-center text-sm px-3 text-white transition-all duration-300'>
             {anime.title_english || anime.title}
           </article>

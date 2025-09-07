@@ -42,7 +42,7 @@ export const CardGallery = ({ list }: CardGalleryProps) => {
                 />
               </svg>
             </button>
-            <div className='absolute bottom-0 rounded-lg left-0 right-0 bg-gradient-to-t from-black/80 to-transparent h-1/2 group-hover:h-full flex items-center justify-center'></div>
+            <div className='absolute bottom-0 rounded-lg left-0 right-0 bg-gradient-to-t from-black/80 to-transparent h-1/2 group-hover:h-full group-hover:from-black flex items-center justify-center transition-all duration-100 ease-in'></div>
             <article className='absolute z-10 bottom-2 px-2'>
               <p className='text-zinc-300 text-2xl font-semibold'>
                 {episode.episode}
