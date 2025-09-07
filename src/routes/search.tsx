@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { NotFound } from '@/components/errors/not-found'
 import { Layout } from '@/components/layouts/main'
-import { Loading as PGLoading } from '@/components/poster-gallery/Loading'
+import { Loading as PGLoading } from '@/components/poster-gallery/loading'
 import { useEffect, useState } from 'react'
 import { Searchbar } from '@/components/searchbar'
 import { PosterGallery } from '@/components/poster-gallery'

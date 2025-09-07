@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Layout } from '@/components/layouts/main'
 import { NotFound } from '@/components/errors/not-found'
-import { Loading as PGLoading } from '@/components/poster-gallery/Loading'
+import { Loading as PGLoading } from '@/components/poster-gallery/loading'
 import { useTop, useTrending, useUpcoming } from '@/queries/useQuery'
 import { PosterGallery } from '@/components/poster-gallery'
 import { Jikan } from '@/types/jikan'

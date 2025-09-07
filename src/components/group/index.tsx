@@ -1,4 +1,4 @@
-import { Loading as PGLoading } from '@/components/poster-gallery/Loading'
+import { Loading as PGLoading } from '@/components/poster-gallery/loading'
 
 type GroupProps = {
   name: string

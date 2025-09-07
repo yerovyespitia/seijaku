@@ -1,7 +1,7 @@
 import { Jikan } from '@/types/jikan'
 import { Link } from '@tanstack/react-router'
 import { Poster } from '@/components/poster'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 
 type PosterSliderProps = {
   title: string

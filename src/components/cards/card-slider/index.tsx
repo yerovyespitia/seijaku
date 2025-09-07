@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 
 type CardSliderProps = {
   title: string

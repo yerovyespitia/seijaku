@@ -1,4 +1,4 @@
-import { Loading as Poster } from '@/components/poster/Loading'
+import { Loading as Poster } from '@/components/poster/loading'
 
 type PosterGalleryProps = {
   videos: number
