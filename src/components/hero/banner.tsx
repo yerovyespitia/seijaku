@@ -64,10 +64,10 @@ export const Banner = ({ anime, zip }: BannerProps) => {
       />
       <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent' />
       <button
-        className='absolute p-3 top-3 right-8 rounded-full bg-sd/40 backdrop-blur-sm border-none hover:bg-sd/70 cursor-pointer animate-pressed'
+        className='btn-glass-dark absolute p-3 top-3 right-8 animate-pressed'
         onClick={() => router.history.back()}
       >
-        <X className='size-5 text-white' />
+        <X className='size-5' />
       </button>
 
       <div className='absolute bottom-8 left-8 right-8'>

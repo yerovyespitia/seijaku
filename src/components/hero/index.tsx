@@ -50,14 +50,14 @@ export const Hero = ({ animes }: HeroProps) => {
         <Badges items={categories} />
       </div>
       <button
-        className='absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-all duration-300 cursor-pointer'
+        className='btn-glass-dark absolute left-4 top-1/2 transform -translate-y-1/2 animate-pressed border border-white/30'
         aria-label='Previous movie'
         onClick={goToPreviosMovie}
       >
         <ChevronLeft className='size-6' />
       </button>
       <button
-        className='absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-all duration-300 cursor-pointer'
+        className='btn-glass-dark absolute right-4 top-1/2 transform -translate-y-1/2 animate-pressed border border-white/30'
         aria-label='Next movie'
         onClick={goToNextMovie}
       >
