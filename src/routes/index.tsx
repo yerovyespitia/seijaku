@@ -23,13 +23,13 @@ export const Route = createFileRoute('/')({
 
 function Index() {
   const { data: hero } = useHeroMovie(5)
-  const { data: upcoming } = useUpcoming(12, {
+  const { data: upcoming } = useUpcoming(8, {
     enabled: !!hero,
   })
-  const { data: trending } = useTrending(12, {
+  const { data: trending } = useTrending(8, {
     enabled: !!hero,
   })
-  const { data: top } = useTop(12, {
+  const { data: top } = useTop(8, {
     enabled: !!hero,
   })
 

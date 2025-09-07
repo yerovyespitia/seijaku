@@ -12,9 +12,9 @@ export const getAniZip = async (id: number) => {
   return data
 }
 
-export const getPopulars = async (limit: number) => {
+export const getPopulars = async (limit: number, page = 1) => {
   const res = await fetch(
-    `${JIKAN_URL}/top/anime?page=1&limit=${limit}&sfw=true`,
+    `${JIKAN_URL}/top/anime?page=${page}&limit=${limit}&sfw=true`,
   )
 
   const data: Jikan = await res.json()
@@ -39,9 +39,9 @@ export const getInfo = async (id: number) => {
   return data
 }
 
-export const getTrending = async (limit: number) => {
+export const getTrending = async (limit: number, page = 1) => {
   const res = await fetch(
-    `${JIKAN_URL}/top/anime?&filter=airing&limit=${limit}&sfw=true&type=tv`,
+    `${JIKAN_URL}/top/anime?page=${page}&filter=airing&limit=${limit}&sfw=true&type=tv`,
   )
   const data: Jikan = await res.json()
 
@@ -57,9 +57,9 @@ export const getTrending = async (limit: number) => {
   return data
 }
 
-export const getUpcoming = async (limit: number) => {
+export const getUpcoming = async (limit: number, page = 1) => {
   const res = await fetch(
-    `${JIKAN_URL}/top/anime?page=1&limit=${limit}&sfw=true&filter=upcoming`,
+    `${JIKAN_URL}/top/anime?page=${page}&limit=${limit}&sfw=true&filter=upcoming`,
   )
 
   const data: Jikan = await res.json()
@@ -76,9 +76,9 @@ export const getUpcoming = async (limit: number) => {
   return data
 }
 
-export const getHero = async (limit: number) => {
+export const getHero = async (limit: number, page = 1) => {
   const res = await fetch(
-    `${JIKAN_URL}/top/anime?page=1&limit=${limit}&sfw=true&type=movie&filter=favorite`,
+    `${JIKAN_URL}/top/anime?page=${page}&limit=${limit}&sfw=true&type=movie&filter=favorite`,
   )
 
   const data: Jikan = await res.json()

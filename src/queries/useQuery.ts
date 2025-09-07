@@ -64,12 +64,12 @@ export const useDetails = (id: number) => {
 export const useTop = (
   limit: number,
   options?: Partial<UseQueryOptions<Jikan>>,
+  page: number = 1,
 ) => {
   return useQuery({
     queryKey: ['top-anime', limit],
     queryFn: async () => {
-      const data = await getPopulars(limit)
-      data.data = data.data.slice(0, 8)
+      const data = await getPopulars(limit, page)
       return data
     },
     staleTime: 1000 * 60 * 60,
@@ -81,12 +81,12 @@ export const useTop = (
 export const useTrending = (
   limit: number,
   options?: Partial<UseQueryOptions<Jikan>>,
+  page: number = 1,
 ) => {
   return useQuery({
-    queryKey: ['trending-anime', limit],
+    queryKey: ['trending-anime', limit, page],
     queryFn: async () => {
-      const data = await getTrending(limit)
-      data.data = data.data.slice(0, 8)
+      const data = await getTrending(limit, page)
       return data
     },
     staleTime: 1000 * 60 * 60,
@@ -98,12 +98,12 @@ export const useTrending = (
 export const useUpcoming = (
   limit: number,
   options?: Partial<UseQueryOptions<Jikan>>,
+  page: number = 1,
 ) => {
   return useQuery({
-    queryKey: ['upcoming-anime', limit],
+    queryKey: ['upcoming-anime', limit, page],
     queryFn: async () => {
-      const data = await getUpcoming(limit)
-      data.data = data.data.slice(0, 8)
+      const data = await getUpcoming(limit, page)
       return data
     },
     staleTime: 1000 * 60 * 60,
@@ -112,10 +112,10 @@ export const useUpcoming = (
   })
 }
 
-export const useHeroMovie = (limit: number) => {
+export const useHeroMovie = (limit: number, page: number = 1) => {
   return useQuery({
-    queryKey: ['hero-anime', limit],
-    queryFn: async () => getHero(limit),
+    queryKey: ['hero-anime', limit, page],
+    queryFn: async () => getHero(limit, page),
     staleTime: 1000 * 60 * 60,
     retry: 2,
   })
