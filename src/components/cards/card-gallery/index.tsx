@@ -12,7 +12,7 @@ export const CardGallery = ({ list }: CardGalleryProps) => {
   )
 
   return (
-    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-6'>
+    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 pt-6'>
       {episodes
         .filter((item) => isValidNumber(item.episode))
         .map((episode, index) => (
@@ -26,13 +26,13 @@ export const CardGallery = ({ list }: CardGalleryProps) => {
             ) : (
               <div className='rounded-lg w-full aspect-[309/231] bg-zinc-800 flex flex-col items-center justify-center' />
             )}
-            <button className='p-3 rounded-full bg-sd/30 hover:bg-sd/60 backdrop-blur-sm border-none absolute z-90 left-[40%] bottom-[40%] hidden group-hover:block transition-all duration-150 ease-linear cursor-pointer'>
+            <button className='btn-glass absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-50'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                fill='#BBBEC1'
+                fill='white'
                 viewBox='0 0 24 24'
                 strokeWidth={2}
-                stroke='#BBBEC1'
+                stroke='white'
                 className='size-7'
               >
                 <path
@@ -42,7 +42,7 @@ export const CardGallery = ({ list }: CardGalleryProps) => {
                 />
               </svg>
             </button>
-            <div className='absolute bottom-0 rounded-lg left-0 right-0 bg-gradient-to-t from-black to-transparent h-1/2 group-hover:h-full flex items-center justify-center'></div>
+            <div className='absolute bottom-0 rounded-lg left-0 right-0 bg-gradient-to-t from-black/80 to-transparent h-1/2 group-hover:h-full flex items-center justify-center'></div>
             <article className='absolute z-10 bottom-2 px-2'>
               <p className='text-zinc-300 text-2xl font-semibold'>
                 {episode.episode}
