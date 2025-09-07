@@ -1,7 +1,6 @@
 import { Jikan } from '@/types/jikan'
 import { Link } from '@tanstack/react-router'
 import { Poster } from '@/components/poster'
-import { Button } from '@/components/ui/button'
 
 type PosterSliderProps = {
   title: string
@@ -14,7 +13,7 @@ export const PosterSlider = ({ title, animes }: PosterSliderProps) => {
       <section className='flex justify-between items-center pb-4'>
         <h1 className='text-2xl font-bold text-white mb-0'>{title}</h1>
         <Link to='/category/$categoryId' params={{ categoryId: title }}>
-          <Button>View more</Button>
+          <button className='btn-primary'>View more</button>
         </Link>
       </section>
 

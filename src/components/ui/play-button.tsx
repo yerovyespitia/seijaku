@@ -1,11 +1,6 @@
-import { motion } from 'framer-motion'
-
 export function PlayButton() {
   return (
-    <motion.button
-      whileTap={{ scale: 0.95 }}
-      className='flex items-center font-semibold gap-2 px-6 py-2 text-black bg-white rounded-full cursor-pointer hover:bg-white/80'
-    >
+    <button className='btn-basic animate-pressed'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         fill='black'
@@ -21,6 +16,6 @@ export function PlayButton() {
         />
       </svg>
       Play
-    </motion.button>
+    </button>
   )
 }

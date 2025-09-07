@@ -15,7 +15,7 @@ import { Details } from '@/types/jikan'
 import { AniZip } from '@/types/zip'
 import { Badges } from '@/components/badges'
 import { PlayButton } from '@/components/ui/play-button'
-import { motion } from 'framer-motion'
+import { Infobar } from '../infobar'
 
 type BannerProps = {
   anime: Details
@@ -63,13 +63,12 @@ export const Banner = ({ anime, zip }: BannerProps) => {
         className='absolute inset-0 object-cover w-full h-full'
       />
       <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent' />
-      <motion.button
-        whileTap={{ scale: 0.95 }}
-        className='absolute p-3 top-3 right-8 rounded-full bg-sd/40 backdrop-blur-sm border-none hover:bg-sd/70 cursor-pointer'
+      <button
+        className='absolute p-3 top-3 right-8 rounded-full bg-sd/40 backdrop-blur-sm border-none hover:bg-sd/70 cursor-pointer animate-pressed'
         onClick={() => router.history.back()}
       >
         <X className='size-5 text-white' />
-      </motion.button>
+      </button>
 
       <div className='absolute bottom-8 left-8 right-8'>
         {logoImage ? (
@@ -81,42 +80,17 @@ export const Banner = ({ anime, zip }: BannerProps) => {
         )}
         <section className='flex items-center justify-center gap-4 mb-4 w-[300px]'>
           <PlayButton />
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            className='p-3 rounded-full bg-white/20 backdrop-blur-sm border-none hover:bg-white/30 cursor-pointer'
-            title='Add to a list'
-          >
+          <button className='btn-glass animate-pressed' title='Add to a list'>
             <HeartPlus className='size-5 text-white' />
-          </motion.button>
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            className='p-3 rounded-full bg-white/20 backdrop-blur-sm border-none hover:bg-white/30 cursor-pointer'
-            title='Drop it'
-          >
+          </button>
+          <button className='btn-glass animate-pressed' title='Drop it'>
             <Trash2 className='size-5 text-white' />
-          </motion.button>
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            className='p-3 rounded-full bg-white/20 backdrop-blur-sm border-none hover:bg-white/30 cursor-pointer'
-            title='Restart watch'
-          >
+          </button>
+          <button className='btn-glass animate-pressed' title='Restart watch'>
             <ListRestart className='size-5 text-white' />
-          </motion.button>
+          </button>
         </section>
-        <section>
-          <div className='flex items-center gap-4 my-2 text-sm text-white font-semibold'>
-            {details.map((detail, index) => (
-              <div key={index} className='flex items-center gap-1'>
-                {detail && (
-                  <>
-                    <detail.icon className='size-4 text-white' />
-                    <p>{detail.text}</p>
-                  </>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
+        <Infobar items={details} />
         <p className='text-white w-1/3 line-clamp-3'>{anime.data.synopsis}</p>
         <Badges items={categories} />
       </div>

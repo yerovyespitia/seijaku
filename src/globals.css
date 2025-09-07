@@ -1,8 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 body {
-  background-color: #1B1E28;
-  color: #A6ACCD;
+  background-color: #1b1e28;
+  color: #a6accd;
   overflow-y: scroll;
 }
 
@@ -11,7 +11,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background-color: #292C35;
+  background-color: #292c35;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -19,13 +19,29 @@ body::-webkit-scrollbar-thumb {
 }
 
 @theme {
-  --color-pm: #1B1E28;
-  --color-sd: #292C35;
-  --color-txtGray: #A6ACCD;
+  --color-pm: #1b1e28;
+  --color-sd: #292c35;
+  --color-txtGray: #a6accd;
 }
 
 select {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
+}
+
+.btn-basic {
+  @apply flex items-center font-semibold gap-2 px-6 py-2 text-black bg-white rounded-full cursor-pointer hover:bg-white/80;
+}
+
+.btn-primary {
+  @apply flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-full text-white/80 bg-sd hover:bg-sd/70 hover:text-white cursor-pointer;
+}
+
+.btn-glass {
+  @apply p-3 rounded-full bg-white/20 backdrop-blur-sm border-none hover:bg-white/30 cursor-pointer;
+}
+
+.animate-pressed {
+  @apply transition-transform duration-150 active:scale-90;
 }
