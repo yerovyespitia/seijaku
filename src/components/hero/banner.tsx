@@ -8,11 +8,12 @@ import {
   Calendar,
   List,
   Trophy,
+  Play,
 } from 'lucide-react'
 import { Details } from '@/types/jikan'
 import { AniZip } from '@/types/zip'
 import { Badges } from '@/components/badges'
-import { PlayButton } from '@/components/ui/play-button'
+import { IconButton } from '@/components/ui/icon-button'
 import { Infobar } from '../infobar'
 
 type BannerProps = {
@@ -96,7 +97,7 @@ export const Banner = ({ anime, zip }: BannerProps) => {
             </h2>
           )}
           <section className='flex items-center gap-4 mb-4'>
-            <PlayButton />
+            <IconButton text='Play' icon={Play} />
             <button className='btn-glass animate-pressed' title='Add to a list'>
               <HeartPlus className='size-5 text-white' />
             </button>

@@ -1,7 +1,9 @@
 import { useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Info } from 'lucide-react'
 import { Badges } from '@/components/badges'
 import { Jikan } from '@/types/jikan'
+import { IconButton } from '../ui/icon-button'
+import { Link } from '@tanstack/react-router'
 
 type HeroProps = {
   animes: Jikan
@@ -48,6 +50,19 @@ export const Hero = ({ animes }: HeroProps) => {
           {currentAnime.synopsis}
         </p>
         <Badges items={categories} />
+        <div className='mt-4'>
+          <Link
+            to='/info/$infoId'
+            params={{ infoId: animes.data[currentMovie].mal_id.toString() }}
+          >
+            <IconButton
+              text={'Explore'}
+              icon={Info}
+              fill='none'
+              strokeWidth={2.5}
+            />
+          </Link>
+        </div>
       </div>
       <button
         className='btn-glass-dark absolute left-4 top-1/2 transform -translate-y-1/2 animate-pressed border border-white/30'

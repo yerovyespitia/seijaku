@@ -1,4 +1,5 @@
 import { AniZip, Episode } from '@/types/zip'
+import { Play } from 'lucide-react'
 
 type CardGalleryProps = {
   list: AniZip
@@ -28,21 +29,8 @@ export const CardGallery = ({ list }: CardGalleryProps) => {
               ) : (
                 <div className='rounded-lg w-full aspect-[309/231] bg-zinc-800 flex flex-col items-center justify-center' />
               )}
-              <button className='btn-glass absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-50'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='white'
-                  viewBox='0 0 24 24'
-                  strokeWidth={2}
-                  stroke='white'
-                  className='size-7'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z'
-                  />
-                </svg>
+              <button className='btn-glass absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-50 animate-pressed'>
+                <Play size={20} fill='white' strokeWidth={4} color='white' />
               </button>
               <div className='absolute bottom-0 rounded-lg left-0 right-0 bg-gradient-to-t from-black/80 to-transparent h-1/2 group-hover:h-full group-hover:from-black flex items-center justify-center transition-all duration-100 ease-in'></div>
               <article className='absolute z-10 bottom-2 px-2'>
