@@ -12,45 +12,48 @@ export const CardGallery = ({ list }: CardGalleryProps) => {
   )
 
   return (
-    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 pt-6'>
-      {episodes
-        .filter((item) => isValidNumber(item.episode))
-        .map((episode, index) => (
-          <div className='relative cursor-pointer group' key={index}>
-            {episode.image ? (
-              <img
-                className='rounded-lg w-full aspect-[309/231] brightness-75'
-                src={episode.image}
-                alt={`${episode.tvdbId}`}
-              />
-            ) : (
-              <div className='rounded-lg w-full aspect-[309/231] bg-zinc-800 flex flex-col items-center justify-center' />
-            )}
-            <button className='btn-glass absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-50'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='white'
-                viewBox='0 0 24 24'
-                strokeWidth={2}
-                stroke='white'
-                className='size-7'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z'
+    <div className='pt-6 mt-60 md:mt-72'>
+      <h2 className='text-gray-100 text-2xl font-semibold mb-4'>Episodes</h2>
+      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4'>
+        {episodes
+          .filter((item) => isValidNumber(item.episode))
+          .map((episode, index) => (
+            <div className='relative cursor-pointer group' key={index}>
+              {episode.image ? (
+                <img
+                  className='rounded-lg w-full aspect-[309/231] brightness-75'
+                  src={episode.image}
+                  alt={`${episode.tvdbId}`}
                 />
-              </svg>
-            </button>
-            <div className='absolute bottom-0 rounded-lg left-0 right-0 bg-gradient-to-t from-black/80 to-transparent h-1/2 group-hover:h-full group-hover:from-black flex items-center justify-center transition-all duration-100 ease-in'></div>
-            <article className='absolute z-10 bottom-2 px-2'>
-              <p className='text-zinc-300 text-2xl font-semibold'>
-                {episode.episode}
-              </p>
-              <h3 className='text-white'>{episode.title.en}</h3>
-            </article>
-          </div>
-        ))}
+              ) : (
+                <div className='rounded-lg w-full aspect-[309/231] bg-zinc-800 flex flex-col items-center justify-center' />
+              )}
+              <button className='btn-glass absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-50'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='white'
+                  viewBox='0 0 24 24'
+                  strokeWidth={2}
+                  stroke='white'
+                  className='size-7'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z'
+                  />
+                </svg>
+              </button>
+              <div className='absolute bottom-0 rounded-lg left-0 right-0 bg-gradient-to-t from-black/80 to-transparent h-1/2 group-hover:h-full group-hover:from-black flex items-center justify-center transition-all duration-100 ease-in'></div>
+              <article className='absolute z-10 bottom-2 px-2'>
+                <p className='text-zinc-300 text-2xl font-semibold'>
+                  {episode.episode}
+                </p>
+                <h3 className='text-white'>{episode.title.en}</h3>
+              </article>
+            </div>
+          ))}
+      </div>
     </div>
   )
 }

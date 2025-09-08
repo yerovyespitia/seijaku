@@ -6,10 +6,8 @@ import {
   X,
   TrendingUp,
   Calendar,
-  CheckCheck,
   List,
   Trophy,
-  Hourglass,
 } from 'lucide-react'
 import { Details } from '@/types/jikan'
 import { AniZip } from '@/types/zip'
@@ -34,10 +32,14 @@ export const Banner = ({ anime, zip }: BannerProps) => {
     (image: { coverType: string }) => image.coverType === 'Fanart',
   )
 
+  const poster = zip?.images?.find(
+    (image: { coverType: string }) => image.coverType === 'Poster',
+  )
+
   const details = [
     {
-      text: `${anime.data.airing ? 'Airing' : 'Finished'}`,
-      icon: anime.data.airing ? Hourglass : CheckCheck,
+      type: 'status' as const,
+      isAiring: anime.data.airing,
     },
     zip.episodeCount
       ? { text: `${zip.episodeCount} episodes`, icon: List }
@@ -52,47 +54,63 @@ export const Banner = ({ anime, zip }: BannerProps) => {
   ].filter(Boolean)
 
   return (
-    <section className='relative aspect-video h-full brightness-90'>
-      <img
-        src={
-          fanartImage?.url ||
-          anime.data.images.jpg.large_image_url ||
-          anime.data.images.jpg.image_url
-        }
-        alt={anime.data.title_english || anime.data.title}
-        className='absolute inset-0 object-cover w-full h-full'
-      />
-      <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent' />
-      <button
-        className='btn-glass-dark absolute p-3 top-3 right-8 animate-pressed'
-        onClick={() => router.history.back()}
-      >
-        <X className='size-5' />
-      </button>
+    <section>
+      <header className='relative w-full h-[40vh] md:h-[50vh]'>
+        <img
+          src={
+            fanartImage?.url ||
+            anime.data.images.jpg.large_image_url ||
+            anime.data.images.jpg.image_url
+          }
+          alt={anime.data.title_english || anime.data.title}
+          className='object-cover object-center brightness-75 w-full h-[40vh] md:h-[50vh]'
+        />
+        <div className='absolute inset-0 bg-gradient-to-t from-pm to-transparent' />
+        <button
+          className='btn-glass-dark absolute p-3 top-3 right-8 animate-pressed'
+          onClick={() => router.history.back()}
+        >
+          <X className='size-5' />
+        </button>
+      </header>
 
-      <div className='absolute bottom-8 left-8 right-8'>
-        {logoImage ? (
-          <img className='object-cover w-[300px] pb-4' src={logoImage?.url} />
-        ) : (
-          <h2 className='text-4xl font-bold text-white mb-3'>
-            {anime.data.title_english || anime.data.title}
-          </h2>
-        )}
-        <section className='flex items-center justify-center gap-4 mb-4 w-[300px]'>
-          <PlayButton />
-          <button className='btn-glass animate-pressed' title='Add to a list'>
-            <HeartPlus className='size-5 text-white' />
-          </button>
-          <button className='btn-glass animate-pressed' title='Drop it'>
-            <Trash2 className='size-5 text-white' />
-          </button>
-          <button className='btn-glass animate-pressed' title='Restart watch'>
-            <ListRestart className='size-5 text-white' />
-          </button>
-        </section>
-        <Infobar items={details} />
-        <p className='text-white w-1/3 line-clamp-3'>{anime.data.synopsis}</p>
-        <Badges items={categories} />
+      <div className='flex flex-row gap-6 md:gap-8 px-6 pb-6 absolute -mt-40'>
+        <div className='shrink-0 w-[250px] h-[400px] md:w-[300px] md:h-[450px] rounded-lg overflow-hidden shadow-lg shadow-black/30'>
+          {poster ? (
+            <img
+              className='w-[250px] h-[400px] md:w-[300px] md:h-[450px] object-cover'
+              src={poster?.url}
+              alt={poster.coverType}
+            />
+          ) : (
+            <div className='w-[250px] h-[400px] md:w-[300px] md:h-[450px] bg-pm' />
+          )}
+        </div>
+
+        <div className='flex flex-col max-w-[550px]'>
+          {logoImage ? (
+            <img className='object-cover w-[300px] pb-4' src={logoImage?.url} />
+          ) : (
+            <h2 className='text-4xl font-bold text-white mb-3'>
+              {anime.data.title_english || anime.data.title}
+            </h2>
+          )}
+          <section className='flex items-center gap-4 mb-4'>
+            <PlayButton />
+            <button className='btn-glass animate-pressed' title='Add to a list'>
+              <HeartPlus className='size-5 text-white' />
+            </button>
+            <button className='btn-glass animate-pressed' title='Drop it'>
+              <Trash2 className='size-5 text-white' />
+            </button>
+            <button className='btn-glass animate-pressed' title='Restart watch'>
+              <ListRestart className='size-5 text-white' />
+            </button>
+          </section>
+          <Infobar items={details} />
+          <p className='text-gray-400 line-clamp-3'>{anime.data.synopsis}</p>
+          <Badges items={categories} />
+        </div>
       </div>
     </section>
   )
