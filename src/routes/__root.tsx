@@ -2,12 +2,15 @@ import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { Settings, User, Users } from 'lucide-react'
 import { Notifications } from '@/components/notifications'
+import { platform } from '@tauri-apps/plugin-os'
 
 const tabs = [
   { href: '/', label: 'Home' },
   { href: '/search', label: 'Search' },
   { href: '/collections', label: 'Collections' },
 ]
+
+const os = platform()
 
 export const Route = createRootRoute({
   component: () => (
@@ -28,10 +31,11 @@ export const Route = createRootRoute({
               </Link>
             ))}
           </div>
-          <div className='absolute right-6'>
+          <div
+            className={`absolute ${os === 'windows' ? 'left-6' : 'right-6'}`}
+          >
             <div className='flex items-center space-x-4 justify-end'>
               <Notifications />
-
               <Link to='/' title='Watch together'>
                 <Users className='size-4 text-txtGray hover:text-white cursor-pointer' />
               </Link>
