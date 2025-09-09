@@ -1,22 +1,29 @@
+import { Anime } from '@/types/jikan'
 import { AniZip, Episode } from '@/types/zip'
 import { Play } from 'lucide-react'
 
 type CardGalleryProps = {
   list: AniZip
+  anime?: {
+    data: Anime
+  }
 }
 
-export const CardGallery = ({ list }: CardGalleryProps) => {
-  console.log('list', list.episodes)
+export const CardGallery = ({ list, anime }: CardGalleryProps) => {
   const isValidNumber = (str: string) => /^\d+$/.test(str)
+
   const episodes = Object.values(list.episodes).filter(
     (episode): episode is Episode => typeof episode === 'object',
   )
+
+  const displayEpisodes =
+    anime?.data?.type === 'Movie' ? episodes.slice(0, 1) : episodes
 
   return (
     <div className='pt-6 mt-60 md:mt-72'>
       <h2 className='text-gray-100 text-2xl font-semibold mb-4'>Episodes</h2>
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4'>
-        {episodes
+        {displayEpisodes
           .filter((item) => isValidNumber(item.episode))
           .map((episode, index) => (
             <div className='relative cursor-pointer group' key={index}>

@@ -62,7 +62,7 @@ function RouteComponent() {
     >
       <Banner anime={details} zip={zip as AniZip} />
       <Layout>
-        <CardGallery list={zip as AniZip} />
+        <CardGallery list={zip as AniZip} anime={details} />
       </Layout>
     </motion.div>
   )
