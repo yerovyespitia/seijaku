@@ -40,10 +40,22 @@ export const Route = createRootRoute({
                 <Users className='size-4 text-txtGray hover:text-white cursor-pointer' />
               </Link>
               <Link to='/account' title='Sign in'>
-                <User className='size-4 text-txtGray hover:text-white cursor-pointer' />
+                {({ isActive }) => (
+                  <User
+                    className={`w-4 h-4 transition-colors cursor-pointer ${
+                      isActive ? 'text-white' : 'text-txtGray hover:text-white'
+                    }`}
+                  />
+                )}
               </Link>
               <Link to='/settings' title='Settings'>
-                <Settings className='size-4 text-txtGray hover:text-white cursor-pointer' />
+                {({ isActive }) => (
+                  <Settings
+                    className={`w-4 h-4 transition-colors cursor-pointer ${
+                      isActive ? 'text-white' : 'text-txtGray hover:text-white'
+                    }`}
+                  />
+                )}
               </Link>
             </div>
           </div>
