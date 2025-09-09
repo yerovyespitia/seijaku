@@ -62,7 +62,7 @@ function RouteComponent() {
     >
       <Banner jikan={jikan} zip={zip as AniZip} />
       <Layout>
-        <CardGallery list={zip as AniZip} anime={jikan} />
+        <CardGallery list={zip as AniZip} jikan={jikan} />
       </Layout>
     </motion.div>
   )
