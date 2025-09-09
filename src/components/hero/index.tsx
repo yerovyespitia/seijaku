@@ -31,6 +31,7 @@ export const Hero = ({ animes }: HeroProps) => {
       <img
         src={
           currentAnime.trailer.images.maximum_image_url ||
+          currentAnime.trailer.images.small_image_url ||
           currentAnime.trailer.images.large_image_url ||
           currentAnime.trailer.images.medium_image_url ||
           currentAnime.images.jpg.large_image_url ||
@@ -44,7 +45,7 @@ export const Hero = ({ animes }: HeroProps) => {
 
       <div className='absolute bottom-8 left-8 right-8'>
         <h2 className='text-4xl font-bold text-white mb-3'>
-          {currentAnime.title_english}
+          {currentAnime.title_english || currentAnime.title}
         </h2>
         <p className='text-white/80 w-1/3 line-clamp-2'>
           {currentAnime.synopsis}

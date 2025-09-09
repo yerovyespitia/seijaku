@@ -78,7 +78,7 @@ export const getUpcoming = async (limit: number, page = 1) => {
 
 export const getHero = async (limit: number, page = 1) => {
   const res = await fetch(
-    `${JIKAN_URL}/top/anime?page=${page}&limit=${limit}&sfw=true&type=movie&filter=favorite`,
+    `${JIKAN_URL}/top/anime?page=${page}&limit=${limit}&sfw=true&filter=upcoming`,
   )
 
   const data: Jikan = await res.json()
