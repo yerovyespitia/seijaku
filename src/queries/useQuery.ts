@@ -3,6 +3,7 @@ import {
   getAniZip,
   getHero,
   getInfo,
+  getMostLiked,
   getPopulars,
   getSearching,
   getTrending,
@@ -70,6 +71,23 @@ export const useTop = (
     queryKey: ['top-anime', limit],
     queryFn: async () => {
       const data = await getPopulars(limit, page)
+      return data
+    },
+    staleTime: 1000 * 60 * 60,
+    retry: 2,
+    ...options,
+  })
+}
+
+export const useMostLiked = (
+  limit: number,
+  options?: Partial<UseQueryOptions<Jikan>>,
+  page: number = 1,
+) => {
+  return useQuery({
+    queryKey: ['liked-anime', limit],
+    queryFn: async () => {
+      const data = await getMostLiked(limit, page)
       return data
     },
     staleTime: 1000 * 60 * 60,

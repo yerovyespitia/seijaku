@@ -76,6 +76,25 @@ export const getUpcoming = async (limit: number, page = 1) => {
   return data
 }
 
+export const getMostLiked = async (limit: number, page = 1) => {
+  const res = await fetch(
+    `${JIKAN_URL}/top/anime?page=${page}&limit=${limit}&sfw=true&filter=bypopularity`,
+  )
+
+  const data: Jikan = await res.json()
+
+  const seenIds = new Set()
+  data.data = data.data.filter((anime) => {
+    if (seenIds.has(anime.mal_id)) {
+      return false
+    }
+    seenIds.add(anime.mal_id)
+    return true
+  })
+
+  return data
+}
+
 export const getHero = async (limit: number, page = 1) => {
   const res = await fetch(
     `${JIKAN_URL}/top/anime?page=${page}&limit=${limit}&sfw=true&filter=upcoming`,

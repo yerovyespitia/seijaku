@@ -7,6 +7,7 @@ import { Hero } from '@/components/hero'
 import { PosterSlider } from '@/components/poster-slider'
 import {
   useHeroMovie,
+  useMostLiked,
   useTop,
   useTrending,
   useUpcoming,
@@ -32,6 +33,9 @@ function Index() {
   const { data: top } = useTop(8, {
     enabled: !!hero,
   })
+  const { data: liked } = useMostLiked(8, {
+    enabled: !!hero,
+  })
 
   console.log('hero', hero)
 
@@ -39,6 +43,7 @@ function Index() {
     { title: 'Upcoming', animes: upcoming },
     { title: 'Trending', animes: trending },
     { title: 'Top', animes: top },
+    { title: 'Populars', animes: liked },
   ]
 
   return (
