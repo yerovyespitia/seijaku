@@ -34,9 +34,9 @@ function RouteComponent() {
 
   let numId = Number(infoId)
   const { data: zip, isLoading: loadingZip } = useAnimeZip(numId)
-  const { data: details, isLoading: loadingDetails } = useDetails(numId)
+  const { data: jikan, isLoading: loadingJikan } = useDetails(numId)
 
-  if (loadingDetails || !details || loadingZip) {
+  if (loadingJikan || !jikan || loadingZip) {
     return (
       <motion.div
         initial={{ y: 0, opacity: 0 }}
@@ -51,7 +51,7 @@ function RouteComponent() {
     )
   }
 
-  console.log('details', details)
+  console.log('jikan', jikan)
   console.log('zip', zip)
 
   return (
@@ -60,9 +60,9 @@ function RouteComponent() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <Banner anime={details} zip={zip as AniZip} />
+      <Banner jikan={jikan} zip={zip as AniZip} />
       <Layout>
-        <CardGallery list={zip as AniZip} anime={details} />
+        <CardGallery list={zip as AniZip} anime={jikan} />
       </Layout>
     </motion.div>
   )

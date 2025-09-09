@@ -14,16 +14,16 @@ import { Details } from '@/types/jikan'
 import { AniZip } from '@/types/zip'
 import { Badges } from '@/components/badges'
 import { IconButton } from '@/components/ui/icon-button'
-import { Infobar } from '../infobar'
+import { Infobar } from '@/components/infobar'
 
 type BannerProps = {
-  anime: Details
+  jikan: Details
   zip: AniZip
 }
 
-export const Banner = ({ anime, zip }: BannerProps) => {
+export const Banner = ({ jikan, zip }: BannerProps) => {
   const router = useRouter()
-  const categories = anime.data.genres.map((genre) => genre.name)
+  const categories = jikan.data.genres.map((genre) => genre.name)
 
   const logoImage = zip?.images?.find(
     (image: { coverType: string }) => image.coverType === 'Clearlogo',
@@ -40,19 +40,21 @@ export const Banner = ({ anime, zip }: BannerProps) => {
   const details = [
     {
       type: 'status' as const,
-      isAiring: anime.data.airing,
+      isAiring: jikan.data.airing,
     },
     zip.episodeCount
       ? { text: `${zip.episodeCount} episodes`, icon: List }
       : null,
-    anime.data.rank
-      ? { text: `${anime.data.rank} Ranked`, icon: TrendingUp }
+    jikan.data.rank
+      ? { text: `${jikan.data.rank} Ranked`, icon: TrendingUp }
       : null,
-    anime.data.score
-      ? { text: `${anime.data.score.toPrecision(2)} Score`, icon: Trophy }
+    jikan.data.score
+      ? { text: `${jikan.data.score.toPrecision(2)} Score`, icon: Trophy }
       : null,
-    anime.data.year ? { text: `${anime.data.year}`, icon: Calendar } : null,
+    jikan.data.year ? { text: `${jikan.data.year}`, icon: Calendar } : null,
   ].filter(Boolean)
+
+  console.log('poster', poster)
 
   return (
     <section>
@@ -60,10 +62,12 @@ export const Banner = ({ anime, zip }: BannerProps) => {
         <img
           src={
             fanartImage?.url ||
-            anime.data.images.jpg.large_image_url ||
-            anime.data.images.jpg.image_url
+            jikan?.data?.trailer?.images?.maximum_image_url ||
+            jikan?.data?.trailer?.images?.large_image_url ||
+            jikan.data.images.jpg.large_image_url ||
+            jikan.data.images.jpg.image_url
           }
-          alt={anime.data.title_english || anime.data.title}
+          alt='Banner'
           className='object-cover object-center brightness-75 w-full h-[40vh] md:h-[50vh]'
         />
         <div className='absolute inset-0 bg-gradient-to-t from-pm to-transparent' />
@@ -76,12 +80,16 @@ export const Banner = ({ anime, zip }: BannerProps) => {
       </header>
 
       <div className='flex flex-row gap-6 md:gap-8 px-6 pb-6 absolute -mt-40'>
-        <div className='shrink-0 w-[250px] h-[400px] md:w-[300px] md:h-[450px] rounded-lg overflow-hidden shadow-lg shadow-black/30'>
-          {poster ? (
+        <div className='shrink-0 w-[250px] h-[400px] md:w-[300px] md:h-[450px] rounded-2xl overflow-hidden shadow-lg shadow-black/30'>
+          {poster || jikan ? (
             <img
               className='w-[250px] h-[400px] md:w-[300px] md:h-[450px] object-cover'
-              src={poster?.url}
-              alt={poster.coverType}
+              src={
+                poster?.url ||
+                jikan.data.images.jpg.large_image_url ||
+                jikan.data.images.jpg.image_url
+              }
+              alt='Poster'
             />
           ) : (
             <div className='w-[250px] h-[400px] md:w-[300px] md:h-[450px] bg-pm' />
@@ -93,7 +101,7 @@ export const Banner = ({ anime, zip }: BannerProps) => {
             <img className='object-cover w-[300px] pb-4' src={logoImage?.url} />
           ) : (
             <h2 className='text-4xl font-bold text-white mb-3'>
-              {anime.data.title_english || anime.data.title}
+              {jikan.data.title_english || jikan.data.title}
             </h2>
           )}
           <section className='flex items-center gap-4 mb-4'>
@@ -109,7 +117,7 @@ export const Banner = ({ anime, zip }: BannerProps) => {
             </button>
           </section>
           <Infobar items={details} />
-          <p className='text-gray-400 line-clamp-3'>{anime.data.synopsis}</p>
+          <p className='text-gray-400 line-clamp-3'>{jikan.data.synopsis}</p>
           <Badges items={categories} />
         </div>
       </div>
