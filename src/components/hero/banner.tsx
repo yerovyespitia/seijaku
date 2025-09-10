@@ -9,6 +9,7 @@ import {
   List,
   Trophy,
   Play,
+  Settings,
 } from 'lucide-react'
 import { Details } from '@/types/jikan'
 import { AniZip } from '@/types/zip'
@@ -114,6 +115,9 @@ export const Banner = ({ jikan, zip }: BannerProps) => {
             </button>
             <button className='btn-glass animate-pressed' title='Restart watch'>
               <ListRestart className='size-5 text-white' />
+            </button>
+            <button className='btn-glass animate-pressed' title='Settings'>
+              <Settings className='size-5 text-white' />
             </button>
           </section>
           <Infobar items={details} />
