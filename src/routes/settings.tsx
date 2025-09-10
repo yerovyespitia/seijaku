@@ -8,11 +8,11 @@ export const Route = createFileRoute('/settings')({
 })
 
 function RouteComponent() {
+  const [selectedItem, setSelectedItem] = useState('General')
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-
-  const [selectedItem, setSelectedItem] = useState('General')
 
   const renderSettings = () => {
     switch (selectedItem) {
@@ -28,9 +28,9 @@ function RouteComponent() {
   }
 
   return (
-    <section className='w-full'>
+    <>
       <Sidebar selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
-      <div className='pl-52'>{renderSettings()}</div>
-    </section>
+      <div className='pl-60'>{renderSettings()}</div>
+    </>
   )
 }

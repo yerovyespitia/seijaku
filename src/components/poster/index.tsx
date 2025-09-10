@@ -12,15 +12,15 @@ export const Poster = ({ anime }: PosterProps) => {
         animate={{ opacity: 1, y: 0 }}
         whileTap={{ scale: 0.85 }}
         transition={{ duration: 1 }}
-        className='relative w-full h-0 pb-[150%] overflow-hidden rounded-md cursor-pointer'
+        className='relative w-full h-0 pb-[150%] overflow-hidden rounded-lg cursor-pointer'
       >
-        <section className='absolute top-0 left-0 w-full h-full overflow-hidden rounded-md group cursor-pointer transition-transform duration-300 transform hover:scale-[1.03]'>
+        <section className='absolute top-0 left-0 w-full h-full overflow-hidden rounded-lg group cursor-pointer transition-transform duration-300 transform hover:scale-[1.03]'>
           <img
             className='w-full h-full object-cover'
             src={anime.images.jpg.large_image_url}
             alt={anime.title_english || anime.title}
           />
-          <div className='absolute inset-0 bg-black/0 group-hover:bg-black/90 transition-bg duration-150' />
+          <div className='absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-bg duration-150' />
           <article className='hidden group-hover:flex justify-center items-center absolute inset-0 font-semibold text-center text-sm px-3 text-white transition-all duration-300'>
             {anime.title_english || anime.title}
           </article>

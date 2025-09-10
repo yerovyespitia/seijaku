@@ -14,7 +14,7 @@ export const Sidebar = ({ selectedItem, setSelectedItem }: SidebarProps) => {
   ]
 
   return (
-    <div className='w-52 h-screen overflow-auto fixed left-0 bg-pm p-4 border-r border-sd'>
+    <aside className='w-60 h-screen overflow-auto fixed left-0 bg-pm p-4 border-r border-sd'>
       <h2 className='font-semibold mb-4 text-white'>Settings</h2>
       <ul>
         {sidebarItems.map((item, index) => (
@@ -32,6 +32,6 @@ export const Sidebar = ({ selectedItem, setSelectedItem }: SidebarProps) => {
           </button>
         ))}
       </ul>
-    </div>
+    </aside>
   )
 }
