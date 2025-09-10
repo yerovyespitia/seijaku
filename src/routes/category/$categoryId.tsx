@@ -1,4 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { useEffect } from 'react'
+import { createFileRoute, useRouter } from '@tanstack/react-router'
 import { Layout } from '@/components/layouts/main'
 import { NotFound } from '@/components/errors/not-found'
 import { Loading as PGLoading } from '@/components/poster-gallery/loading'
@@ -9,8 +10,7 @@ import {
   useUpcoming,
 } from '@/queries/useQuery'
 import { PosterGallery } from '@/components/poster-gallery'
-import { Jikan } from '@/types/jikan'
-import { useEffect } from 'react'
+import { ArrowLeft } from 'lucide-react'
 
 export const Route = createFileRoute('/category/$categoryId')({
   component: RouteComponent,
@@ -28,6 +28,8 @@ export const Route = createFileRoute('/category/$categoryId')({
 
 function RouteComponent() {
   const { categoryId } = Route.useLoaderData()
+
+  const router = useRouter()
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -49,15 +51,17 @@ function RouteComponent() {
 
   return (
     <Layout>
-      <section className='pt-6 flex justify-between items-center pb-4'>
+      <section className='pt-6 flex items-center gap-1 pb-4'>
+        <button
+          className='cursor-pointer'
+          onClick={() => router.history.back()}
+        >
+          <ArrowLeft color='white' size={24} strokeWidth={2.5} />
+        </button>
         <h1 className='text-2xl mb-0 font-semibold text-white'>{categoryId}</h1>
       </section>
 
-      {animes ? (
-        <PosterGallery animes={animes as Jikan} />
-      ) : (
-        <PGLoading videos={25} />
-      )}
+      {animes ? <PosterGallery animes={animes} /> : <PGLoading videos={25} />}
     </Layout>
   )
 }
