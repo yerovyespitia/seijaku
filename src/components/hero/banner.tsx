@@ -16,6 +16,7 @@ import { AniZip } from '@/types/zip'
 import { Badges } from '@/components/badges'
 import { IconButton } from '@/components/ui/icon-button'
 import { Infobar } from '@/components/infobar'
+import { Tooltip } from '../tooltip'
 
 type BannerProps = {
   jikan: Details
@@ -107,18 +108,26 @@ export const Banner = ({ jikan, zip }: BannerProps) => {
           )}
           <section className='flex items-center gap-4 mb-4'>
             <IconButton text='Play' icon={Play} />
-            <button className='btn-glass animate-pressed' title='Add to a list'>
-              <HeartPlus className='size-5 text-white' />
-            </button>
-            <button className='btn-glass animate-pressed' title='Drop it'>
-              <Trash2 className='size-5 text-white' />
-            </button>
-            <button className='btn-glass animate-pressed' title='Restart watch'>
-              <ListRestart className='size-5 text-white' />
-            </button>
-            <button className='btn-glass animate-pressed' title='Settings'>
-              <Settings className='size-5 text-white' />
-            </button>
+            <Tooltip text='Add to a list'>
+              <button className='btn-glass animate-pressed'>
+                <HeartPlus className='size-5 text-white' />
+              </button>
+            </Tooltip>
+            <Tooltip text='Drop it'>
+              <button className='btn-glass animate-pressed'>
+                <Trash2 className='size-5 text-white' />
+              </button>
+            </Tooltip>
+            <Tooltip text='Restart watch'>
+              <button className='btn-glass animate-pressed'>
+                <ListRestart className='size-5 text-white' />
+              </button>
+            </Tooltip>
+            <Tooltip text='Settings'>
+              <button className='btn-glass animate-pressed'>
+                <Settings className='size-5 text-white' />
+              </button>
+            </Tooltip>
           </section>
           <Infobar items={details} />
           <p className='text-gray-400 line-clamp-3'>{jikan.data.synopsis}</p>
