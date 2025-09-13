@@ -1,5 +1,4 @@
 import { Notifications } from '@/components/notifications'
-import { Tooltip } from '@/components/tooltip'
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { platform } from '@tauri-apps/plugin-os'
