@@ -1,8 +1,9 @@
+import { Notifications } from '@/components/notifications'
+import { Tooltip } from '@/components/tooltip'
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import { Settings, User, Users } from 'lucide-react'
-import { Notifications } from '@/components/notifications'
 import { platform } from '@tauri-apps/plugin-os'
+import { Settings, User, Users } from 'lucide-react'
 
 const tabs = [
   { href: '/', label: 'Home' },

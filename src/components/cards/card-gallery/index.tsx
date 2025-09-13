@@ -48,17 +48,21 @@ export const CardGallery = ({ list, jikan }: CardGalleryProps) => {
                 </button>
                 <div className='absolute bottom-0 rounded-lg left-0 right-0 bg-gradient-to-t from-black/80 to-transparent h-1/2 group-hover:h-full group-hover:from-black flex items-center justify-center transition-all duration-100 ease-in'></div>
                 <article className='absolute z-10 bottom-1 px-2 w-full'>
-                  <p className='text-zinc-200 text-2xl font-semibold'>
-                    {episode.episode}
-                  </p>
-                  <h3 className='text-zinc-300 leading-tight font-medium text-sm line-clamp-2'>
-                    {episode.title.en}
-                  </h3>
-                  <section className='flex items-center gap-1 mt-1'>
-                    <Timer color='#d4d4d8' size={15} strokeWidth={3} />
-                    <p className='text-zinc-300 text-sm font-medium'>
-                      {episode.length}m
+                  <section className='flex items-center justify-between'>
+                    <p className='text-zinc-200 text-2xl font-semibold'>
+                      {episode.episode}
                     </p>
+                  </section>
+                  <section className='flex justify-between gap-1 items-center'>
+                    <h3 className='text-zinc-300 leading-tight font-medium text-sm line-clamp-2 mb-1'>
+                      {episode.title.en}
+                    </h3>
+                    <div className='flex items-center gap-1'>
+                      <Timer color='#d4d4d8' size={15} strokeWidth={3} />
+                      <p className='text-zinc-300 text-sm font-medium'>
+                        {episode.length}m
+                      </p>
+                    </div>
                   </section>
                 </article>
               </div>
