@@ -1,7 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
+
 import { PlayerSettings } from '@/components/player-settings'
 import { Sidebar } from '@/components/slidebar'
+import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/settings')({
   component: RouteComponent,
