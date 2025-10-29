@@ -1,10 +1,3 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { Layout } from '@/components/layouts/main'
-import { Loading as PSLoading } from '@/components/poster-slider/loading'
-import { Loading as HLoading } from '@/components/hero/loading'
-import { NotFound } from '@/components/errors/not-found'
-import { Hero } from '@/components/hero'
-import { PosterSlider } from '@/components/poster-slider'
 import {
   useHeroMovie,
   useMostLiked,
@@ -12,6 +5,14 @@ import {
   useTrending,
   useUpcoming,
 } from '@/queries/useQuery'
+import { createFileRoute } from '@tanstack/react-router'
+
+import { NotFound } from '@/components/errors/not-found'
+import { Hero } from '@/components/hero'
+import { Loading as HLoading } from '@/components/hero/loading'
+import { Layout } from '@/components/layouts/main'
+import { PosterSlider } from '@/components/poster-slider'
+import { Loading as PSLoading } from '@/components/poster-slider/loading'
 
 export const Route = createFileRoute('/')({
   component: Index,

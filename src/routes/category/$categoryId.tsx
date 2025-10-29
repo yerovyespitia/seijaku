@@ -1,16 +1,16 @@
-import { useEffect } from 'react'
-import { createFileRoute, useRouter } from '@tanstack/react-router'
-import { Layout } from '@/components/layouts/main'
-import { NotFound } from '@/components/errors/not-found'
-import { Loading as PGLoading } from '@/components/poster-gallery/loading'
 import {
   useMostLiked,
   useTop,
   useTrending,
   useUpcoming,
 } from '@/queries/useQuery'
-import { PosterGallery } from '@/components/poster-gallery'
+import { createFileRoute, useRouter } from '@tanstack/react-router'
 import { ArrowLeft } from 'lucide-react'
+
+import { NotFound } from '@/components/errors/not-found'
+import { Layout } from '@/components/layouts/main'
+import { PosterGallery } from '@/components/poster-gallery'
+import { Loading as PGLoading } from '@/components/poster-gallery/loading'
 
 export const Route = createFileRoute('/category/$categoryId')({
   component: RouteComponent,
@@ -30,10 +30,6 @@ function RouteComponent() {
   const { categoryId } = Route.useLoaderData()
 
   const router = useRouter()
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
 
   const categoryHooks = {
     top: useTop,

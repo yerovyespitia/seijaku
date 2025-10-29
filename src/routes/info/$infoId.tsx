@@ -1,14 +1,14 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { NotFound } from '@/components/errors/not-found'
-import { Layout } from '@/components/layouts/main'
 import { useAnimeZip, useDetails } from '@/queries/useQuery'
-import { Loading as HLoading } from '@/components/hero/loading'
-import { Banner } from '@/components/hero/banner'
-import { Loading as LoadingCards } from '@/components/cards/card-slider/loading-cards'
-import { CardGallery } from '@/components/cards/card-gallery'
 import { AniZip } from '@/types/zip'
+import { createFileRoute } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
-import { useEffect } from 'react'
+
+import { CardGallery } from '@/components/cards/card-gallery'
+import { Loading as LoadingCards } from '@/components/cards/card-slider/loading-cards'
+import { NotFound } from '@/components/errors/not-found'
+import { Banner } from '@/components/hero/banner'
+import { Loading as HLoading } from '@/components/hero/loading'
+import { Layout } from '@/components/layouts/main'
 
 export const Route = createFileRoute('/info/$infoId')({
   component: RouteComponent,
@@ -27,10 +27,6 @@ export const Route = createFileRoute('/info/$infoId')({
 
 function RouteComponent() {
   const { infoId } = Route.useLoaderData()
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
 
   let numId = Number(infoId)
   const { data: zip, isLoading: loadingZip } = useAnimeZip(numId)

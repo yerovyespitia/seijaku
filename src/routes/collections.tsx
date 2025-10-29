@@ -1,19 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { motion } from 'framer-motion'
 import { Plus } from 'lucide-react'
+
 import { Group } from '@/components/group'
 import { Layout } from '@/components/layouts/main'
-import { useEffect } from 'react'
-import { motion } from 'framer-motion'
 
 export const Route = createFileRoute('/collections')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
   const collections = [
     { id: 0, name: 'Watch Later', items: 12 },
     { id: 1, name: 'Watched', items: 8 },

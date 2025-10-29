@@ -1,12 +1,14 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { NotFound } from '@/components/errors/not-found'
-import { Layout } from '@/components/layouts/main'
-import { Loading as PGLoading } from '@/components/poster-gallery/loading'
-import { useEffect, useState } from 'react'
-import { Searchbar } from '@/components/searchbar'
-import { PosterGallery } from '@/components/poster-gallery'
+import { useState } from 'react'
+
 import { useFind } from '@/queries/useQuery'
 import { Jikan } from '@/types/jikan'
+import { createFileRoute } from '@tanstack/react-router'
+
+import { NotFound } from '@/components/errors/not-found'
+import { Layout } from '@/components/layouts/main'
+import { PosterGallery } from '@/components/poster-gallery'
+import { Loading as PGLoading } from '@/components/poster-gallery/loading'
+import { Searchbar } from '@/components/searchbar'
 
 export const Route = createFileRoute('/search')({
   component: RouteComponent,
@@ -25,10 +27,6 @@ export const Route = createFileRoute('/search')({
 })
 
 function RouteComponent() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
   const [selectedOption, setSelectedOption] = useState({
     genre: '',
     format: '',

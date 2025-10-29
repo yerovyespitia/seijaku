@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+
+import { createFileRoute } from '@tanstack/react-router'
 
 import { PlayerSettings } from '@/components/player-settings'
 import { Sidebar } from '@/components/slidebar'
-import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/settings')({
   component: RouteComponent,
@@ -10,10 +11,6 @@ export const Route = createFileRoute('/settings')({
 
 function RouteComponent() {
   const [selectedItem, setSelectedItem] = useState('General')
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
 
   const renderSettings = () => {
     switch (selectedItem) {
