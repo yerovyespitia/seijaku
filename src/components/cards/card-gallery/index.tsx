@@ -20,6 +20,7 @@ export const CardGallery = ({ list, jikan }: CardGalleryProps) => {
       : []
 
   const typeMovie = jikan?.data?.type === 'Movie'
+  const posterImage = jikan?.data?.images?.jpg?.large_image_url
 
   const displayEpisodes = typeMovie ? episodes.slice(0, 1) : episodes
 
@@ -36,12 +37,16 @@ export const CardGallery = ({ list, jikan }: CardGalleryProps) => {
               <div className='relative cursor-pointer group' key={index}>
                 {episode.image ? (
                   <img
-                    className='rounded-lg w-full aspect-[309/231] brightness-75'
+                    className='rounded-lg w-full aspect-[309/231] brightness-75 object-cover'
                     src={episode.image}
                     alt={`${episode.tvdbId}`}
                   />
                 ) : (
-                  <div className='rounded-lg w-full aspect-[309/231] bg-zinc-800 flex flex-col items-center justify-center' />
+                  <img
+                    className='rounded-lg w-full aspect-[309/231] brightness-75 object-cover'
+                    src={posterImage}
+                    alt={`Episode ${episode.episode}`}
+                  />
                 )}
                 <button className='btn-glass absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-50 animate-pressed'>
                   <Play size={20} fill='white' strokeWidth={4} color='white' />
