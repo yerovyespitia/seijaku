@@ -1,8 +1,9 @@
-import { Notifications } from '@/components/notifications'
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { platform } from '@tauri-apps/plugin-os'
 import { Settings, User, Users } from 'lucide-react'
+
+import { Notifications } from '@/components/notifications'
 
 const tabs = [
   { href: '/', label: 'Home' },
@@ -62,7 +63,7 @@ export const Route = createRootRoute({
         </div>
       </section>
       <Outlet />
-      <TanStackRouterDevtools />
+      {import.meta.env.DEV && <TanStackRouterDevtools />}
     </>
   ),
 })
