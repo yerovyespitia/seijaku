@@ -9,10 +9,10 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { NotFound } from '@/components/errors/not-found'
 import { Hero } from '@/components/hero'
-import { Loading as HLoading } from '@/components/hero/loading'
+import { Loading as HLoading } from '@/components/hero/Loading'
 import { Layout } from '@/components/layouts/main'
 import { PosterSlider } from '@/components/poster-slider'
-import { Loading as PSLoading } from '@/components/poster-slider/loading'
+import { Loading as PSLoading } from '@/components/poster-slider/Loading'
 
 export const Route = createFileRoute('/')({
   component: Index,

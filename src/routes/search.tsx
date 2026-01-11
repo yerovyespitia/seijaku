@@ -7,7 +7,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { NotFound } from '@/components/errors/not-found'
 import { Layout } from '@/components/layouts/main'
 import { PosterGallery } from '@/components/poster-gallery'
-import { Loading as PGLoading } from '@/components/poster-gallery/loading'
+import { Loading as PGLoading } from '@/components/poster-gallery/Loading'
 import { Searchbar } from '@/components/searchbar'
 
 export const Route = createFileRoute('/search')({

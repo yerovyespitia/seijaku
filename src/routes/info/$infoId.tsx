@@ -7,7 +7,7 @@ import { CardGallery } from '@/components/cards/card-gallery'
 import { Loading as LoadingCards } from '@/components/cards/card-slider/loading-cards'
 import { NotFound } from '@/components/errors/not-found'
 import { Banner } from '@/components/hero/banner'
-import { Loading as HLoading } from '@/components/hero/loading'
+import { Loading as HLoading } from '@/components/hero/Loading'
 import { Layout } from '@/components/layouts/main'
 
 export const Route = createFileRoute('/info/$infoId')({
