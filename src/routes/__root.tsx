@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react'
+
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import { platform } from '@tauri-apps/plugin-os'
 import { Settings, User, Users } from 'lucide-react'
 
 import { Notifications } from '@/components/notifications'
@@ -11,10 +12,18 @@ const tabs = [
   { href: '/collections', label: 'Collections' },
 ]
 
-const os = platform()
+function RootComponent() {
+  const [os, setOs] = useState<string>('macos')
 
-export const Route = createRootRoute({
-  component: () => (
+  useEffect(() => {
+    if (window.__TAURI__) {
+      import('@tauri-apps/plugin-os').then(({ platform }) => {
+        setOs(platform())
+      })
+    }
+  }, [])
+
+  return (
     <>
       <section className='flex-1 overflow-auto sticky top-0 z-90'>
         <div
@@ -65,5 +74,9 @@ export const Route = createRootRoute({
       <Outlet />
       {import.meta.env.DEV && <TanStackRouterDevtools />}
     </>
-  ),
+  )
+}
+
+export const Route = createRootRoute({
+  component: RootComponent,
 })
