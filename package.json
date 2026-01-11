@@ -14,7 +14,7 @@
     "@tanstack/react-query": "^5.85.5",
     "@tanstack/react-router": "^1.131.35",
     "@tanstack/react-router-devtools": "^1.131.35",
-    "@tauri-apps/api": "^2.8.0",
+    "@tauri-apps/api": "^2.9.0",
     "@tauri-apps/plugin-opener": "^2.5.0",
     "@tauri-apps/plugin-os": "~2",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
