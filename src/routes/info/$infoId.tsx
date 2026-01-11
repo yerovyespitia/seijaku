@@ -1,14 +1,16 @@
 import { useAnimeZip, useDetails } from '@/queries/useQuery'
 import { AniZip } from '@/types/zip'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useRouter } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
 
 import { CardGallery } from '@/components/cards/card-gallery'
 import { Loading as LoadingCards } from '@/components/cards/card-slider/loading-cards'
 import { NotFound } from '@/components/errors/not-found'
-import { Banner } from '@/components/hero/banner'
 import { Loading as HLoading } from '@/components/hero/Loading'
+import { Banner } from '@/components/hero/banner'
 import { Layout } from '@/components/layouts/main'
+
+import { useKey } from '@/hooks/useKeyboard'
 
 export const Route = createFileRoute('/info/$infoId')({
   component: RouteComponent,
@@ -27,6 +29,12 @@ export const Route = createFileRoute('/info/$infoId')({
 
 function RouteComponent() {
   const { infoId } = Route.useLoaderData()
+  const router = useRouter()
+
+  // Commands for keyboard shortcuts
+  useKey('Escape', () => {
+    router.history.back()
+  })
 
   let numId = Number(infoId)
   const { data: zip, isLoading: loadingZip } = useAnimeZip(numId)
