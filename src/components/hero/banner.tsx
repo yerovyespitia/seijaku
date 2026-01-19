@@ -1,6 +1,6 @@
 import { useRouter } from '@tanstack/react-router'
 import {
-  HeartPlus,
+  Heart,
   ListRestart,
   Trash2,
   X,
@@ -17,6 +17,7 @@ import { Badges } from '@/components/badges'
 import { IconButton } from '@/components/ui/icon-button'
 import { Infobar } from '@/components/infobar'
 import { Tooltip } from '../tooltip'
+import { useWatchLaterStore } from '@/store/watch-later'
 
 type BannerProps = {
   jikan: Details
@@ -25,6 +26,10 @@ type BannerProps = {
 
 export const Banner = ({ jikan, zip }: BannerProps) => {
   const router = useRouter()
+  const toggleWatchLater = useWatchLaterStore((state) => state.toggle)
+  const isInWatchLater = useWatchLaterStore((state) =>
+    state.items.some((item) => item.id === jikan.data.mal_id),
+  )
   const categories = jikan.data.genres.map((genre) => genre.name)
 
   const logoImage = zip?.images?.find(
@@ -38,6 +43,11 @@ export const Banner = ({ jikan, zip }: BannerProps) => {
   const poster = zip?.images?.find(
     (image: { coverType: string }) => image.coverType === 'Poster',
   )
+
+  const posterUrl =
+    poster?.url ||
+    jikan.data.images.jpg.large_image_url ||
+    jikan.data.images.jpg.image_url
 
   const details = [
     {
@@ -56,7 +66,13 @@ export const Banner = ({ jikan, zip }: BannerProps) => {
     jikan.data.year ? { text: `${jikan.data.year}`, icon: Calendar } : null,
   ].filter(Boolean)
 
-  console.log('poster', poster)
+  const handleToggleWatchLater = () => {
+    toggleWatchLater({
+      id: jikan.data.mal_id,
+      title: jikan.data.title_english || jikan.data.title,
+      posterUrl,
+    })
+  }
 
   return (
     <section>
@@ -86,11 +102,7 @@ export const Banner = ({ jikan, zip }: BannerProps) => {
           {poster || jikan ? (
             <img
               className='w-[250px] h-[400px] md:w-[300px] md:h-[450px] object-cover'
-              src={
-                poster?.url ||
-                jikan.data.images.jpg.large_image_url ||
-                jikan.data.images.jpg.image_url
-              }
+              src={posterUrl}
               alt='Poster'
             />
           ) : (
@@ -109,8 +121,15 @@ export const Banner = ({ jikan, zip }: BannerProps) => {
           <section className='flex items-center gap-4 mb-4'>
             <IconButton text='Play' icon={Play} />
             <Tooltip text='Add to a list'>
-              <button className='btn-glass animate-pressed'>
-                <HeartPlus className='size-5 text-white' />
+              <button
+                className='btn-glass animate-pressed'
+                aria-pressed={isInWatchLater}
+                onClick={handleToggleWatchLater}
+              >
+                <Heart
+                  className={`size-5 ${isInWatchLater ? 'text-red-500' : 'text-white'}`}
+                  fill={isInWatchLater ? 'currentColor' : 'none'}
+                />
               </button>
             </Tooltip>
             <Tooltip text='Drop it'>
