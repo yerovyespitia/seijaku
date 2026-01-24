@@ -7,7 +7,12 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "rust:update": "cargo update --manifest-path src-tauri/Cargo.toml",
+    "rust:upgrade": "cargo upgrade --manifest-path src-tauri/Cargo.toml",
+    "tauri:update": "bun update @tauri-apps/api @tauri-apps/cli @tauri-apps/plugin-opener @tauri-apps/plugin-os",
+    "rust:versions": "cargo tree -p tauri --manifest-path src-tauri/Cargo.toml",
+    "tauri:versions": "bun pm ls @tauri-apps/api @tauri-apps/cli @tauri-apps/plugin-opener @tauri-apps/plugin-os"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
